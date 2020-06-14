@@ -1,0 +1,58 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="." routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>home</mat-icon>
+    <h3 mat-line>Schedule</h3>
+  </a>
+  <a mat-list-item routerLink="my-courses" routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>list</mat-icon>
+    <h3 mat-line>My courses</h3>
+  </a>
+  <a mat-list-item routerLink="students" routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>people</mat-icon>
+    <h3 mat-line>All Students</h3>
+  </a>
+  <a mat-list-item routerLink="teachers" routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>school</mat-icon>
+    <h3 mat-line>All Teachers</h3>
+  </a>
+  <a mat-list-item routerLink="courses" routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>dashboard</mat-icon>
+    <h3 mat-line>All Courses</h3>
+  </a>
+  <a mat-list-item routerLink="profile" routerLinkActive="mat-list-item-focus"
+     [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon mat-list-icon>settings</mat-icon>
+    <h3 mat-line>User Settings</h3>
+  </a>
+</mat-nav-list>
+
+<!-- Students -->
+<mat-divider></mat-divider>
+<mat-list>
+  <a mat-list-item href="#">
+    <div matListAvatar class="example-header-image" *ngIf="studentAvatarUrl" [style.background-image]="'url(' + studentAvatarUrl + ')'"></div>
+    <h3 mat-line>Анна Чебаненко</h3>
+    <p mat-line>20 December</p>
+  </a>
+  <a mat-list-item href="#">
+    <div matListAvatar class="example-header-image" *ngIf="studentAvatarUrl" [style.background-image]="'url(' + studentAvatarUrl + ')'"></div>
+    <h3 mat-line>Анна Чебаненко</h3>
+    <p mat-line>20 December</p>
+  </a>
+  <a mat-list-item href="#">
+    <div matListAvatar class="example-header-image" *ngIf="studentAvatarUrl" [style.background-image]="'url(' + studentAvatarUrl + ')'"></div>
+    <h3 mat-line>Анна Чебаненко</h3>
+    <p mat-line>20 December</p>
+  </a>
+  <a mat-list-item href="#">
+    <div matListAvatar class="example-header-image" *ngIf="studentAvatarUrl" [style.background-image]="'url(' + studentAvatarUrl + ')'"></div>
+    <h3 mat-line>Анна Чебаненко</h3>
+    <p mat-line>20 December</p>
+  </a>
+</mat-list>
+<!-- / Students -->

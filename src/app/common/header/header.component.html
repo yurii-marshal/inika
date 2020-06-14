@@ -1,0 +1,26 @@
+<header class="in-header"
+        [ngClass]="{ navigation: !home }">
+    <div class="in-container">
+        <div class="in-header__wrapper"
+             style.borderColor="{{ color }}"
+             [ngClass]="{ no_border_bottom: !home }">
+            <div class="in-header__left">
+                <a routerLink="/" class="in-logo in-header__logo">
+                    <in-logo [type]="logoType" [color]="'#ffffff'" [width]="114" [height]="40"></in-logo>
+                </a>
+                <in-socials [color]="socialsColor" class="in-header__socials"></in-socials>
+            </div>
+            <div class="in-header__menu">
+                <div class="in-header__right">
+                    <in-navigation [color]="color" class="in-header__navigation"></in-navigation>
+                </div>
+                <div (click)="openLoginDialog()">
+                    <!--<mat-icon>input</mat-icon>-->
+                    <div class="in-header_login" (click)="openLoginDialog()">
+                        Вход
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,14 @@
+<div class="exercise-rich-textbox-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section text-box" *ngIf="exercise['data']['htmlContent']">
+    <div class="html-template-container" [innerHTML]="exercise['data']['htmlContent'] | safeHtmlPipe"></div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

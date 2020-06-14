@@ -1,0 +1,28 @@
+<div class="exercise-checkboxes-read exercise-container">
+  <div class="question-header user-mode">
+    <!--<div class="index">{{index+1}}.</div>-->
+    {{exercise['data'].header}}
+  </div>
+  <div class="checkers-container user">
+    <section class="checker-section" *ngFor="let input of exercise['data'].inputs; let n = index">
+      <!--[ngClass]="{'error': exercise['feedback'][n]?.isError, 'success': exercise['feedback'][n]?.isSuccess === true}"-->
+      <mat-checkbox class="example-margin" (change)="exercise['commonFeedback']={};"
+                    [(ngModel)]="exercise['data'].selected[n]">
+        {{exercise['data'].inputs[n].text}}
+      </mat-checkbox>
+    </section>
+  </div>
+  <div class="answer-message-container">
+    <mat-icon *ngIf="exercise['commonFeedback']?.isError" class="error">close</mat-icon>
+    <mat-icon *ngIf="exercise['commonFeedback']?.isSuccess" class="success">check</mat-icon>
+    <!--<div class="error" *ngIf="exercise['feedback']?.isError">-->
+      <!--Выберите ответ-->
+      <!--<span *ngIf="exercise['feedback'].description">-->
+            <!--. Правильный ответ: <span class="description">{{exercise['feedback'].description}}</span>-->
+      <!--</span>-->
+    <!--</div>-->
+    <!--<div class="success" *ngIf="exercise['feedback']?.isSuccess">-->
+      <!--Правильно-->
+    <!--</div>-->
+  </div>
+</div>

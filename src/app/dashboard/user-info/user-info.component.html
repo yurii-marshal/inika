@@ -1,0 +1,31 @@
+<!-- User info -->
+<mat-card class="user-info" [style.background-image]="'url(' + bg + ')'">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" *ngIf="user"
+         [style.background-image]="'url(' + user?.adminAvatarUrl + ')'"></div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-title>{{user?.username}}</mat-card-title>
+    <mat-card-subtitle>
+      <span>{{user?.email}}</span>
+      <!-- <button mat-icon-button [matMenuTriggerFor]="userCardMenu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button> -->
+    </mat-card-subtitle>
+    <!-- <mat-menu #userCardMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu> -->
+  </mat-card-content>
+</mat-card>
+<!-- / User info -->

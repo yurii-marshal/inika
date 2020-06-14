@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{data['isEdit'] ? 'Редактировать урок' : 'Создать урок'}}</h1>
+<mat-dialog-content>
+    <div class="align-center">
+        <mat-form-field class="inputField">
+            <input
+                    matInput
+                    #lessonName="ngModel"
+                    [(ngModel)]="data.lessonName"
+                    placeholder="Название урока"
+                    minlength="1"
+                    maxlength="50"
+                    required>
+            <mat-error *ngIf="lessonName.value?.length <= 1">
+                Это поле обязательно
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="inputField">
+            <input
+                    matInput
+                    #keywords="ngModel"
+                    [(ngModel)]="data.keywords"
+                    placeholder="Ключевые слова"
+                    maxlength="500">
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<div class="align-center">
+    <mat-dialog-actions class="marginBottom ">
+        <button mat-button class="mat-raised-button cancel-btn" (click)="onCancel();">Отмена</button>
+        <button
+                mat-button
+                [mat-dialog-close]="{lessonName: data.lessonName, keywords: data.keywords}"
+                class="mat-raised-button create-btn mat-primary"
+                [disabled]="lessonName.invalid">
+            {{data['isEdit'] ? 'Сохранить' : 'Создать'}}
+        </button>
+    </mat-dialog-actions>
+</div>

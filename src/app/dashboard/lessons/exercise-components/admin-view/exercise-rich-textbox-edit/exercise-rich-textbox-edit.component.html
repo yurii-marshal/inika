@@ -1,0 +1,41 @@
+<div class="exercise-rich-textbox-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="mat-button mat-primary"
+            (click)="isModeView=!isModeView"
+            *ngIf="data['htmlContent']">
+      Режим {{isModeView ? 'просмотра' : 'редактирования'}}
+    </button>
+  </div>
+  <div class="content-section">
+    <!--<app-ngx-editor [placeholder]="'Enter text here...'" [config]="editorConfig"-->
+    <!--[spellcheck]="true" [(ngModel)]="data['htmlContent']">-->
+    <!--</app-ngx-editor>-->
+    <!--<div [froalaEditor] [(froalaModel)]="data['htmlContent']"></div>-->
+    <!--<div [froalaView]="data['htmlContent']"></div>-->
+    <!--<quill-editor [(ngModel)]="data['htmlContent']"></quill-editor>-->
+    <!--<app-tinymce [(ngModel)]="data['htmlContent']"></app-tinymce>-->
+    <!--<summernote [(ngModel)]="data['htmlContent']"></summernote>-->
+    <ckeditor *ngIf="!isModeView" [(ngModel)]="data['htmlContent']"></ckeditor>
+  </div>
+  <div class="content-section text-box" *ngIf="isModeView">
+    <div class="html-template-container" [innerHTML]="data['htmlContent'] | safeHtmlPipe"></div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

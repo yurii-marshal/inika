@@ -1,0 +1,40 @@
+<!-- Course progress -->
+<mat-card>
+  <mat-card-header>
+    <h1>Название Курса</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="progress">
+      <div class="progress__item">
+        <span class="progress__label">Пройдено</span>
+        <div class="progress__value">45</div>
+      </div>
+      <div class="progress__item">
+        <span class="progress__label">Осталось</span>
+        <div class="progress__value">12</div>
+      </div>
+      <div class="progress__item">
+        <span class="progress__label">Оплачено</span>
+        <div class="progress__value">10</div>
+      </div>
+    </div>
+  </mat-card-content>
+  <button mat-icon-button [matMenuTriggerFor]="courseProgressMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #courseProgressMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voicemail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
+</mat-card>
+<!-- / Course progress -->

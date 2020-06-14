@@ -1,0 +1,113 @@
+<div class="exercise-type-word-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="content-section">
+    <mat-nav-list>
+      <div mat-list-item class="list-item" *ngFor="let sentence of data['sentencesList']; let i = index">
+        <div class="sentence-container">
+          <div class="index">
+            {{i+1}}.
+          </div>
+          <div class="sentence-body">
+            <div class="sample-item" *ngFor="let sample of sentence.sentenceSamples; let j = index;">
+              <div class="item-line">
+                <div class="samples" *ngFor="let line of sample.line; let k = index;">
+                  <div class="text-sample">
+                    <input type="text" placeholder="Текст предложения..." (change)="checkValidation()"
+                           AutoSizeInput [maxWidth]="770" [minWidth]="200" *ngIf="line.type === 'text'"
+                           [(ngModel)]="line.value" name="sample1"
+                           #sample1="ngModel"/>
+                  </div>
+                  <div class="answer-sample">
+                    <input type="text" placeholder="Правильный ответ..." (change)="checkValidation()"
+                           AutoSizeInput [maxWidth]="770" [minWidth]="150" *ngIf="line.type === 'input'"
+                           [(ngModel)]="line.value" name="answerSample"
+                           #answerSample="ngModel"/>
+                  </div>
+                  <div class="line-break" *ngIf="line.length > 0">
+                    <mat-icon title="Перенос строки" class="line-break-icon">
+                      vertical_align_bottom
+                    </mat-icon>
+                  </div>
+                </div>
+                <div class="tw-controls">
+                  <button class="menu-btn" mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon class="main-fab-mini-btn">
+                      menu
+                    </mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="addTextSample(i, j)">
+                      Добавить текст
+                    </button>
+                    <button mat-menu-item (click)="addInputSample(i, j)">
+                      Добавить поле ввода
+                    </button>
+                    <button mat-menu-item (click)="returnLine(i, j)">
+                      Добавить перенос строки
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
+              <div class="controls">
+                <mat-icon title="Удалить предложение" *ngIf="sentence.sentenceSamples.length > 1"
+                          class="main-fab-mini-btn sentence"
+                          (click)="deleteLine(i, j)">
+                  delete
+                </mat-icon>
+              </div>
+              <!--<div class="tw-controls">-->
+                <!--<button mat-mini-fab class="btn-tw-control">-->
+                  <!--<mat-icon title="Добавить текст"-->
+                            <!--class="main-fab-mini-btn" (click)="addTextSample(i, j)">-->
+                    <!--text_fields-->
+                  <!--</mat-icon>-->
+                <!--</button>-->
+                <!--<button mat-mini-fab class="btn-tw-control">-->
+                  <!--<mat-icon title="Добавить поле ввода"-->
+                            <!--class="main-fab-mini-btn" (click)="addInputSample(i, j)">-->
+                    <!--text_format-->
+                  <!--</mat-icon>-->
+                <!--</button>-->
+                <!--<button mat-mini-fab class="btn-tw-control">-->
+                  <!--<mat-icon title="Перенос строки"-->
+                            <!--class="main-fab-mini-btn" (click)="returnLine(i, j)">-->
+                    <!--vertical_align_bottom-->
+                  <!--</mat-icon>-->
+                <!--</button>-->
+              <!--</div>-->
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <mat-icon title="Удалить блок" class="main-fab-mini-btn" (click)="deleteSentence(i)">
+            delete
+          </mat-icon>
+        </div>
+      </div>
+    </mat-nav-list>
+    <div class="controls">
+      <button mat-stroked-button color="primary" title="Новое предложение"
+              [disabled]="data['sentencesList'].length > 0 && data['sentencesList'][data['sentencesList'].length - 1]['sentenceSamples'].length === 0"
+              class="add-sentence-btn" (click)="addSentence()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

@@ -1,0 +1,86 @@
+.exercise-checkboxes-edit {
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    font-size: 16px;
+    &.user-mode {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .index {
+      padding-right: 10px;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      .mat-form-field {
+        min-width: 500px;
+      }
+    }
+    .main-fab-mini-btn {
+      //margin: 0 5px!important;
+    }
+  }
+  .checkers-container {
+    .add-sentence-btn {
+      margin: 0 !important;
+    }
+    &.user {
+      margin-left: 0;
+    }
+  }
+  .checkers-container {
+    margin-left: 10px;
+    .checker-section {
+      position: relative;
+      .mat-form-field {
+        padding-left: 10px;
+        min-width: 250px;
+      }
+      .delete-icon {
+        position: absolute;
+        top: 15px;
+      }
+      .example-margin {
+        &.error {
+          color: #b40002;
+        }
+        &.success {
+          color: #3d6932;
+        }
+      }
+      ::ng-deep .mat-checkbox.mat-checkbox-checked {
+        &.error {
+          .mat-checkbox-background {
+            background-color: #b40002 !important;
+          }
+        }
+        &.success {
+          .mat-checkbox-background {
+            background-color: #3d6932 !important;
+          }
+        }
+      }
+    }
+  }
+  .delete-icon {
+    margin-left: 10px;
+    color: #b40002;
+    cursor: pointer;
+  }
+  .answer-message-container {
+    padding: 10px 10px 5px 22px;
+    .error {
+      color: #b40002;
+      .description {
+        color: #000000;
+        font-style: italic;
+        font-weight: bold;
+      }
+    }
+    .success {
+      color: #3d6932;
+    }
+  }
+}

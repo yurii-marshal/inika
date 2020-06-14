@@ -1,0 +1,16 @@
+<div class="exercise-reference-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="ref-container">
+      <a [href]="exercise['data']['refStr']" target="_blank">{{exercise['data']['refStr']}}</a>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

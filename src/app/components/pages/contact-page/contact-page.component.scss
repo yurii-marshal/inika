@@ -1,0 +1,32 @@
+.in-contacts {
+  padding-bottom: 185px;
+  @media (max-width: 768px) {
+    padding-bottom: 100px;
+  }
+  &__title {
+    font-size: 18px;
+    color: #65717d;
+    @media (max-width: 768px) {
+      font-size: 35px;
+    }
+  }
+  &__item {
+    margin: 0;
+    font-family: Rubik;
+    font-size: 31px;
+    font-weight: 300;
+    color: #b6c0ca;
+    a {
+      font-size: 31px;
+      font-weight: 300;
+      color: #b6c0ca;
+      text-decoration: none;
+      &:hover {
+        color: darken(#b6c0ca, 20%);
+      }
+    }
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+}

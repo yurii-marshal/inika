@@ -1,0 +1,88 @@
+<div class="exercise-answers-list-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="content-section">
+    <mat-nav-list>
+      <div mat-list-item class="list-item list-order" *ngFor="let sentence of data['sentencesList']; let i = index">
+        <div class="sentence-container">
+          <div class="index">
+            {{i+1}}.
+          </div>
+          <div class="sentence-body">
+            <div class="drop-sample">
+              <div class="order-container">
+                <div class="order-header">
+                  Ввод слов:
+                </div>
+                <div class="drags-container">
+                  <mat-form-field class="new-word-input">
+                    <input matInput placeholder="Новое слово..." name="sampleItem" #newWord
+                           (keypress)="onEnterInputWord($event, i)"
+                           [(ngModel)]="sentence.sampleItem">
+                  </mat-form-field>
+                  <button mat-stroked-button color="accent" title="Сохранить все предложения"
+                          class="add-drag-btn" (click)="createDragItem(i)"
+                          [disabled]="!sentence.sampleItem">
+                    <mat-icon>arrow_right</mat-icon>
+                  </button>
+                  <div draggable
+                       *ngFor="let item of sentence.dropTestSamples; let j = index;"
+                       [dragData]="item" class="drag-item">
+                    {{item.value}}
+                    <mat-icon (click)="removeDragItem(i, j)">cancel</mat-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="order-container">
+                <div class="order-header">
+                  Правильный порядок слов:
+                </div>
+                <div class="list-drop-container list-order-ex">
+                  <div class="list-item" *ngFor="let item of sentence.dropAnswerSamples; let k = index;"
+                       droppable (onDrop)="onItemDrop($event, i, k)">
+                    <div class="drop-item" *ngIf="item">
+                      {{item.value}}
+                      <mat-icon (click)="removeDropItem(i, k)">cancel</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <!--<button mat-stroked-button color="warn" title="Удалить предложение"-->
+          <!--class="main-fab-mini-btn" (click)="deleteSentence(i)">-->
+          <!--<mat-icon>delete</mat-icon>-->
+          <!--</button>-->
+          <mat-icon title="Удалить предложение"
+                    class="main-fab-mini-btn" (click)="deleteSentence(i)">
+            delete
+          </mat-icon>
+        </div>
+      </div>
+    </mat-nav-list>
+    <div class="">
+      <button mat-stroked-button color="primary" title="Новое предложение"
+              class="add-sentence-btn" (click)="addSentence()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

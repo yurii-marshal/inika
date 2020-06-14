@@ -1,0 +1,39 @@
+<div class="exercise-matching-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="row">
+      <div class="drags-container">
+        <div draggable *ngFor="let item of exercise['data']['dragItems']; let i = index;" [dragData]="item" class="drag-item">
+          {{item}}
+        </div>
+      </div>
+    </div>
+    <div class="matches-container">
+      <div class="sample"
+           [ngClass]="{'error': exercise['feedback'][i]?.isError, 'success': exercise['feedback'][i]?.isSuccess}"
+           *ngFor="let item of exercise['data']['sentencesList']; let i = index;">
+        <div class="img-container" *ngIf="item?.mediaData">
+          <img [src]="item?.mediaData" alt="{{item?.mediaData}}">
+        </div>
+        <div class="drops-container">
+          <div class="panel panel-default" droppable
+               [ngClass]="{'error': exercise['feedback'][i]?.isError, 'success': exercise['feedback'][i]?.isSuccess}"
+               (onDrop)="exercise['feedback']=[];onItemDrop($event, i)">
+            <div class="drop-item" *ngIf="item?.dropSample">
+              {{item?.dropSample}}
+              <mat-icon (click)="exercise['feedback']=[];removeDropItem(i)">cancel</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

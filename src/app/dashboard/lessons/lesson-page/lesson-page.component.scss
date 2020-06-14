@@ -1,0 +1,91 @@
+.lesson-page {
+  min-height: 100vh;
+  #mat-header {
+    display: flex;
+    justify-content: space-between;
+    &.sticky {
+      position: fixed;
+      top: 64px;
+      width: auto;
+      right: 55px;
+      left: 300px;
+      z-index: 999;
+      background-color: #ffffff;
+      padding: 25px 8px 0 8px;
+      border-bottom: 1px solid #00c1f7;
+    }
+  }
+  .page-crumbs {
+    padding-bottom: 10px;
+  }
+  .mat-card-header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .lesson-header {
+      display: flex;
+      //align-items: center;
+      font-size: 24px;
+      .new-word-input {
+        min-width: 100%;
+      }
+    }
+    .controls {
+      //display: flex;
+      //align-items: center;
+      position: relative;
+      .mat-slide-toggle {
+        margin: 0 20px;
+      }
+      .answer-control-wrapper {
+        z-index: 999;
+        justify-content: flex-end;
+        display: flex;
+        margin: 10px 20px;
+        &.sticky {
+          position: absolute;
+          top: 50px;
+          right: 0;
+        }
+        .check-answers-btn {
+          background-color: #ffffff;
+        }
+      }
+    }
+    .mat-raised-button {
+
+    }
+  }
+  .mat-card-content {
+    .materials-section {
+
+    }
+    .add-exercise-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 220px;
+      margin-top: 10px;
+      .trigger-btn {
+        color: #00bef2;
+        width: 90px;
+        max-height: 45px;
+        border-radius: 30px;
+        background-color: #FAFAFA;
+      }
+      .add-btns {
+        margin-top: 10px;
+        background-color: #FAFAFA;
+        width: 70%;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24),
+        0 0 4px rgba(0, 0, 0, 0.12);
+        .add-btn {
+          text-align: left;
+          font-size: 12px;
+          width: 99%;
+          height: 90%;
+          background-color: #FAFAFA;
+        }
+      }
+    }
+  }
+}

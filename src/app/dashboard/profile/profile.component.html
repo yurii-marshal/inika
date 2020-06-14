@@ -1,0 +1,192 @@
+<!-- profile -->
+<div class="student-profile-page ">
+  <!-- <mat-tab-group [selectedIndex]="selectedTabIndex"> -->
+  <!-- <mat-tab label="ПРОФИЛЬ"> -->
+  <mat-card class="profile">
+    <mat-card-header>
+      <div>
+        <input style="display:none" type="file" (change)="onImageAvatarSelected($event)" #fileInput>
+        <img class="profile__img" (click)="fileInput.click();" [src]="userData?.userAvatarUrl" alt="prfl_img"/>
+      </div>
+      <div class="profile__row">
+        <h1 class="profile__name">{{ formProfile['userName'] ? formProfile['userName']: 'Фамилия Имя' }}</h1>
+        <div class="profile__item">
+        </div>
+      </div>
+      <div class="profile__controls" *ngIf="!isEditMode">
+        <button mat-icon-button (click)="isEditMode=true">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
+    <!--<mat-divider></mat-divider>-->
+    <mat-card-content class="profile__info">
+      <form name="formProfile" (ngSubmit)="saveProfileInfo(formProfile)" #formProfile="ngForm">
+        <mat-grid-list [cols]="1">
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>person</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input
+                  matInput
+                  type="text"
+                  #userName="ngModel"
+                  [disabled]="!isEditMode"
+                  [(ngModel)]="formProfile['userName']"
+                  name="userName"
+                  placeholder="Фамилия Имя"
+                  autocomplete="userName"
+                  pattern="^[_a-zA-Z0-9абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ ]{1,50}$"
+                  required
+                  maxlength="50">
+                <mat-error *ngIf="!userName.valid">
+                  Введите Фамилию Имя длинной 1-50 символов
+                </mat-error>
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>place</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input
+                  matInput
+                  #country="ngModel"
+                  ngModel
+                  [disabled]="!isEditMode"
+                  [(ngModel)]="formProfile['country']"
+                  name="country"
+                  id="country"
+                  placeholder="Город, страна"
+                  text="country"
+                  autocomplete="country"
+                  maxlength="50">
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <!--<mat-divider></mat-divider>-->
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>work</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input
+                  matInput
+                  type="text"
+                  name="profession"
+                  id="profession"
+                  #profession="ngModel"
+                  text="profession"
+                  [(ngModel)]="formProfile['profession']"
+                  ngModel
+                  [disabled]="!isEditMode"
+                  placeholder="Род деятельности"
+                  autocomplete="profession"
+                  maxlength="50">
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <!--<mat-divider></mat-divider>-->
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>phone</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input matInput #phone="ngModel" ngModel [disabled]="!isEditMode"
+                       [(ngModel)]="formProfile['phone']"
+                       name="phone" id="phone" placeholder="Телефон" text="phone" autocomplete="phone"
+                       maxlength="50"
+                       (keypress)="onPhoneInput($event)">
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <!--<mat-divider></mat-divider>-->
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>chat</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input matInput type="text" #skype="ngModel" ngModel
+                       [disabled]="!isEditMode" [(ngModel)]="formProfile['skype']" name="skype"
+                       id="skype" placeholder="Skype" text="skype" autocomplete="skype" maxlength="50">
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <!--<mat-divider></mat-divider>-->
+          <mat-grid-list [cols]="10" rowHeight="60px">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>email</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input
+                  matInput
+                  #profileEmail="ngModel"
+                  ngModel
+                  [(ngModel)]="formProfile['profileEmail']"
+                  [disabled]="!isEditMode"
+                  name="profileEmail"
+                  autocomplete="profileEmail"
+                  placeholder="Эл.почта (Логин)"
+                  maxlength="50"
+                  email
+                  required>
+                <mat-error *ngIf="!profileEmail.valid">
+                  Введите корректный формат эл.почты
+                </mat-error>
+              </mat-input-container>
+
+            </mat-grid-tile>
+          </mat-grid-list>
+          <mat-grid-list [cols]="10" rowHeight="60px" [ngClass]="{ hidden: !isEditMode }">
+            <mat-grid-tile [rowspan]="1" class="login-icon">
+              <mat-icon>lock</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="9">
+              <mat-input-container class="justifier">
+                <input
+                  matInput
+                  #password="ngModel"
+                  ngModel
+                  ([ngModel])="formProfile?.password"
+                  name="password"
+                  [disabled]="!isEditMode"
+                  autocomplete="off"
+                  placeholder="Пароль"
+                  minlength="8"
+                  maxlength="50">
+                <mat-hint> Длина пароля должна быть не менее 8 символов</mat-hint>
+                <mat-hint align="end"> {{ password.value?.length }} / 8</mat-hint>
+                <mat-error *ngIf="!password.valid">
+                  Длина пароля должна быть не менее 8 символов
+                </mat-error>
+              </mat-input-container>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-grid-list>
+        <div class="edit-btn-container" *ngIf="isEditMode">
+          <button mat-raised-button class="cancel-btn" type="button" (click)="cancelEdit()">
+            Отмена
+          </button>
+          <button
+            type="submit"
+            mat-raised-button
+            class="save-btn"
+            color="primary"
+            [disabled]=" formProfile.invalid ">
+            Сохранить
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <!-- </mat-tab> -->
+  <!-- </mat-tab-group> -->
+</div>

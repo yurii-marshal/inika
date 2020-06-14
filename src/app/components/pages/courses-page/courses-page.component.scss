@@ -1,0 +1,12 @@
+.in-categories {
+  padding-bottom: 185px;
+  @media (max-width: 768px) {
+    padding-bottom: 100px;
+  }
+  &__item {
+    display: block;
+    & + & {
+      margin-top: 20px;
+    }
+  }
+}

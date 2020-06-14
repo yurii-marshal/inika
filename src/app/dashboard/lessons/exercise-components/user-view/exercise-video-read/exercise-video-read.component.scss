@@ -1,0 +1,29 @@
+.exercise-video-read {
+  .ref-container {
+    display: flex;
+    align-items: center;
+    .example-full-width {
+      min-width: 350px !important;
+    }
+    button {
+      margin-left: 20px;
+      height: 40px;
+    }
+  }
+  .error {
+    color: #ef476f;
+  }
+  .player-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .youtube-player {
+    //width: 600px;
+    //height: 400px;
+    //iframe {
+    //  width: 100%!important;
+    //  height: 100%!important;
+    //}
+  }
+}

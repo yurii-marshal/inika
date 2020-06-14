@@ -1,0 +1,68 @@
+<form
+  (ngSubmit)="sendForm(testLessonFormBig)"
+  #testLessonFormBig="ngForm"
+  class="in-test-lesson-form in-test-lesson-form--big in-form">
+  <!-- <a name="testLesson"></a> -->
+  <div class="in-form__field">
+    <label class="in-form__label" for="name">Имя</label>
+    <input
+      class="in-form__input"
+      [(ngModel)]="data.name"
+      autocomplete="name"
+      #name="ngModel"
+      name="name"
+      type="text"
+      id="name"
+      required>
+  </div>
+  <div class="in-form__field">
+    <label class="in-form__label" for="skype">Skype</label>
+    <input
+      class="in-form__input"
+      [(ngModel)]="data.skype"
+      autocomplete="skype"
+      #skype="ngModel"
+      name="skype"
+      type="text"
+      id="skype"
+      required>
+  </div>
+  <div class="in-form__field">
+    <label class="in-form__label" for="email">Email</label>
+    <input
+      class="in-form__input"
+      [(ngModel)]="data.email"
+      autocomplete="email"
+      #email="ngModel"
+      name="email"
+      type="email"
+      id="email"
+      required
+      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$">
+  </div>
+  <div class="in-form__field">
+    <label class="in-form__label" for="phone">Телефон</label>
+	<input
+		class="in-form__input"
+		[(ngModel)]="data.phone"
+		autocomplete="phone"
+		#phone="ngModel"
+		name="phone"
+		type="tel"
+		id="phone"
+		[textMask]="{mask: phoneMask}"
+		required
+		pattern="^[+][0-9]{2}\s\([0-9]{3}\)\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}">
+    <div [hidden]="phone.valid || phone.pristine" class="in-form__alert">
+      Пример: +38 (096) 458 33 11
+    </div>
+  </div>
+  <div class="in-form__field in-form__field--big">
+    <button [disabled]="!testLessonFormBig.form.valid" type="submit"  class="in-form__submit">
+      Получить пробный урок
+    </button>
+  </div>
+  <div *ngIf="submitted" class="in-form__status">
+    {{ thankYouMessage }}
+  </div>
+</form>

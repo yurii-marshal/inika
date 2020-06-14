@@ -1,0 +1,63 @@
+<div class="questions-container">
+  <div class="question-item"
+       *ngFor="let item of lessonsService.userLesson[pageType]; let i = index">
+    <section class="exercise-section">
+      <!--<div class="index" [ngClass]="{'constructor': adminRole}">{{i+1}}.</div>-->
+      <div class="exercise-item">
+        <in-exercise-radiogroup-read *ngIf="item['data'].type === -2"
+                                     [index]="i"
+                                     [type]="pageType">
+        </in-exercise-radiogroup-read>
+        <in-exercise-checkboxes-read *ngIf="item['data'].type === -1"
+                                     [index]="i"
+                                     [type]="pageType">
+        </in-exercise-checkboxes-read>
+        <in-exercise-answers-list-read [index]="i"
+                                       [type]="pageType"
+                                       *ngIf="item['data'].type === 0">
+        </in-exercise-answers-list-read>
+        <in-exercise-list-order-read [index]="i"
+                                     [type]="pageType"
+                                     *ngIf="item['data'].type === 1">
+        </in-exercise-list-order-read>
+        <in-exercise-fill-sentence-read [index]="i"
+                                        [type]="pageType"
+                                        *ngIf="item['data'].type === 2">
+        </in-exercise-fill-sentence-read>
+        <in-exercise-matching-read [index]="i"
+                                   [type]="pageType"
+                                   *ngIf="item['data'].type === 3">
+        </in-exercise-matching-read>
+        <in-exercise-type-word-read [index]="i"
+                                    [type]="pageType"
+                                    *ngIf="item['data'].type === 4">
+        </in-exercise-type-word-read>
+        <in-exercise-rich-textbox-read [index]="i"
+                                       [type]="pageType"
+                                       *ngIf="item['data'].type === 5">
+        </in-exercise-rich-textbox-read>
+        <in-exercise-reference-read [index]="i"
+                                    [type]="pageType"
+                                    *ngIf="item['data'].type === 6">
+        </in-exercise-reference-read>
+        <in-exercise-image-read [index]="i"
+                                [type]="pageType"
+                                *ngIf="item['data'].type === 7">
+        </in-exercise-image-read>
+        <in-exercise-video-read [index]="i"
+                                [type]="pageType"
+                                *ngIf="item['data'].type === 8">
+        </in-exercise-video-read>
+        <in-exercise-audio-read [index]="i"
+                                [type]="pageType"
+                                *ngIf="item['data'].type === 9">
+        </in-exercise-audio-read>
+      </div>
+    </section>
+  </div>
+  <!--<div class="controls">-->
+    <!--<div class="summary-message" *ngIf="lessonsService.feedbackOverallAnswersCount[pageType] > 0">-->
+      <!--Всего правильных ответов: {{lessonsService.feedbackTrueAnswers[pageType]}} из {{lessonsService.feedbackOverallAnswersCount[pageType]}}-->
+    <!--</div>-->
+  <!--</div>-->
+</div>

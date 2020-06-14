@@ -1,0 +1,2 @@
+<in-admin-view-frame [pageType]="pageType" *ngIf="adminRole && authService.getRole() === 1"></in-admin-view-frame>
+<in-user-view-frame [pageType]="pageType" *ngIf="!adminRole"></in-user-view-frame>

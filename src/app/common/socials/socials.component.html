@@ -1,0 +1,18 @@
+<ul *ngIf="socials" class="in-socials">
+    <li *ngFor="let social of socials" class="in-socials__item">
+        <a
+           href="{{ social?.url }}"
+           target="_blank"
+           class="in-socials__link"
+           [ngSwitch]="social?.icon?.type">
+            <fa *ngIf="social.text == 'Skype'"
+                [name]="'skype'"></fa>
+            <fa class="in-socials__icon"
+                *ngSwitchCase="'font-awesome'"
+                [name]="social?.icon?.data['name']"
+                [border]="social?.icon?.data['border']">
+            </fa>
+            <!--<i *ngSwitchCase="'simple-line-icon'" ngClass="in-socials__icon fas fa-{{ social?.icon?.data.class }}"></i>-->
+        </a>
+    </li>
+</ul>

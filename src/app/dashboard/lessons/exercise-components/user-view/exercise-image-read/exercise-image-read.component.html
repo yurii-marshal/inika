@@ -1,0 +1,19 @@
+<div class="exercise-image-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <!--*ngFor="let img of exercise['data']['sentencesList']"-->
+    <div class="img-container">
+      <img class="document" [src]="exercise['data']['sentencesList'][0]['mediaData']"
+           alt="{{exercise['data']['sentencesList'][0]['mediaData']}}">
+      <!--<ngx-image-viewer [src]="exercise['data']['srcURLs']" [config]="{wheelZoom: true}"></ngx-image-viewer>-->
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

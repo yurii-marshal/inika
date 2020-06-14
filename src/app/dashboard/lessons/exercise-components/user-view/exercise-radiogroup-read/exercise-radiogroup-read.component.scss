@@ -1,0 +1,95 @@
+.exercise-radiogroup-read {
+  padding-left: 10px;
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    font-size: 18px;
+    &.user-mode {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .index {
+      padding-right: 10px;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      .mat-form-field {
+        min-width: 500px;
+      }
+    }
+    .main-fab-mini-btn {
+      //margin: 0 5px!important;
+    }
+  }
+  .checkers-container, .radio-container {
+    .add-sentence-btn {
+      margin: 0 !important;
+    }
+  }
+  .radio-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    &.user {
+      margin-left: 0;
+    }
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      .radio-button {
+        padding-bottom: 5px;
+      }
+    }
+    .radio-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .radio-button {
+          display: block;
+          //padding-bottom: 5px;
+        }
+      }
+      .radio-items {
+        display: flex;
+        flex-direction: column;
+        .radio-item {
+          position: relative;
+          .mat-form-field {
+            min-width: 250px;
+          }
+          .delete-icon {
+            position: absolute;
+            top: 15px;
+            right: -40px;
+          }
+        }
+      }
+    }
+  }
+  .delete-icon {
+    margin-left: 10px;
+    color: #b40002;
+    cursor: pointer;
+  }
+  .answer-message-container {
+    padding: 10px 0 5px 0;
+    margin-left: -2px;
+    .error {
+      color: #ffa7a7;
+      .description {
+        color: #000000;
+        font-style: italic;
+        font-weight: bold;
+      }
+    }
+    .success {
+      color: #88d97c;
+    }
+  }
+}

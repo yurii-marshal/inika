@@ -1,0 +1,60 @@
+.exercise-audio-edit {
+  .header-section {
+
+  }
+  .existed-audio {
+    display: flex;
+    align-items: center;
+    &.user {
+      margin-top: 20px;
+    }
+    .delete-ex-icon {
+      margin-left: 20px;
+    }
+  }
+  .prevent-label {
+    margin-top: 10px;
+    color: #ef476f;
+  }
+  .table {
+    .size-label, .progress-label {
+      width: 80px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 0 20px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .size-label {
+      background-color: #a0efa0;
+    }
+    .progress-label {
+      background-color: #00bef2;
+    }
+    .audio-file-input {
+      min-width: 300px;
+    }
+  }
+  .audio-container {
+    margin-top: 10px;
+    //margin-left: 45px;
+    .song__thumbnail {
+      max-width: 200px;
+      max-height: 300px;
+    }
+
+    .song__thumbnail img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .song__filename {
+
+    }
+    audio {
+      margin: 10px 0 15px;
+    }
+  }
+}

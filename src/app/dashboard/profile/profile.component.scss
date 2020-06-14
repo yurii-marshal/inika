@@ -1,0 +1,161 @@
+.student-profile-page {
+  font-family: Roboto, sans-serif;
+  width: 90%;
+  margin: 0 auto;
+  .mat-card-header {
+    justify-content: start;
+    margin-top: 23px;
+    margin-left: 23px;
+    margin-bottom: 25px;
+    h1 {
+      margin: 25px 0 25px;
+      font-size: 30px;
+      letter-spacing: -0.4px;
+      color: #8A888A;
+      font-weight: 400;
+    }
+  }
+  .mat-card-content {
+    margin-bottom: 15px;
+  }
+  .mat-tab-header {
+    background-color: #00BEF2;
+  }
+  .mat-calendar {
+    width: 50%;
+  }
+  .mat-card-content {
+    //display: inline-block;
+    .mat-grid-list {
+      padding-right: 50px;
+    }
+    .mat-grid-tile .mat-figure {}
+    .mat-icon {
+      color: #00BEF2;
+    }
+    .mat-form-field {
+      width: 100%;
+    }
+    .edit-btn-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+
+      .cancel-btn {
+        margin-right: 20px;
+        &:hover:enabled {
+          background-color: darken(#FFFFFF, 10%);
+        }
+      }
+      .save-btn {
+        margin-right: 50px;
+        &:hover:enabled {
+          background-color: darken(#00BEF2, 5%);
+        }
+      }
+    }
+  }
+  .profile {
+    &__img {
+      //-webkit-background-size: cover;
+      //background-size: cover;
+      //background-position: center center;
+      margin: 20px 0 0 20px;
+      height: 250px;
+      width: 250px;
+      color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 10px;
+      object-fit: cover;
+      background-color: #00BEF2;
+    }
+    &__controls {
+      position: absolute;
+      right: 35px;
+      top: 25px;
+      color: #DADADA;
+      mat-icon {
+        &:hover {
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+    }
+    &__info {}
+    &__row {
+      margin-left: 40px;
+    }
+    &__item {
+      .courses,
+      .teachers {
+        font-size: 15px;
+      }
+    }
+    &__label {
+      font-size: 16px;
+      .name {
+        padding-top: 5px;
+        color: #999999;
+        font-size: 15px;
+      }
+    }
+    &__teacher {
+      // margin-top: 20px;
+      .header {
+        font-size: 16px;
+      }
+      .name {
+        padding-top: 5px;
+        color: #999999;
+        font-size: 15px;
+      }
+    }
+  }
+  .mat-list-option {
+    display: inline-flex; // flex-direction: column;
+    // flex-wrap: wrap;
+    // align-content: center;
+    // height: 100%;
+    // background-color: #00BEF2;
+    .mat-list-option-avatar {
+      // flex-basis: 40%;
+      // background-color: #8A888A;
+    }
+    .mat-list-option-user {
+      // background-color: #fff;
+      // flex-basis: 50%;
+      p {
+        padding-left: 5px;
+        margin: 0;
+      }
+    } // .mat-list-option-avatar {
+    //   display: inline-block;
+    //   width: 40%;
+    // }
+    // .mat-list-option-user {
+    //   display: inline-block;
+    //   width: 40%;
+    // }
+  } // .mat-option .mat-selected:not(.mat-option-disabled) {
+  //   color: #118AB2;
+  // }
+  // .colorBlue {
+  //   color: #118AB2;
+  // }
+  h3 {
+    margin: 0 0 10px;
+  }
+  pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+  }
+  .marginBottom {
+    margin-bottom: 20px;
+  }
+
+  .hidden {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+}

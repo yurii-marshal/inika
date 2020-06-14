@@ -1,0 +1,163 @@
+<!-- Teacher profile -->
+<div class="student-profile-page ">
+  <mat-tab-group [selectedIndex]="selectedTabIndex">
+    <mat-tab label="КАЛЕНДАРЬ" [disabled]="isEditMode">
+      <mat-calendar #myDate (selectedChange)="getChangedDate()"></mat-calendar>
+    </mat-tab>
+    <mat-tab label="ПРОФИЛЬ">
+      <mat-card class="profile">
+        <mat-card-header>
+          <div>
+            <input style="display:none" type="file" (change)="onFileSelected($event)" #fileInput>
+            <img class="profile__img" (click)="fileInput.click();" [src]="userData?.userAvatarUrl"
+                 alt="prfl_img"/>
+          </div>
+          <div class="profile__row">
+            <h1 class="profile__name">
+              {{formTeacher['userName'] ? formTeacher['userName']: 'Фамилия Имя'}}
+            </h1>
+            <div class="profile__item">
+              <form class="example-form">
+                <!-- <div class="profile__label" [ngClass]="{marginBottom: !isEditMode}">
+                  <span class="header">Курсы</span>
+                  <div class="name">
+                    <mat-form-field *ngIf="isEditMode">
+                      <mat-select #coursesField placeholder="Выбрать"
+                      [formControl]="courseFormControl" multiple>
+                        <mat-option *ngFor="let course of coursesList">{{course}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <div class="courses" *ngIf="!isEditMode">{{ userData?.courseLevel }}</div>
+                  </div>
+                </div> -->
+
+                <div class="profile__teacher">
+                  <span class="header">Студенты</span>
+                  <span class="ui-fluid"></span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="profile__controls" *ngIf="!isEditMode">
+            <button mat-icon-button (click)="isEditMode=true">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteTeacher()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-header>
+        <!--<mat-divider></mat-divider>-->
+        <mat-card-content class="profile__info">
+          <form role="form" autocomplete="off" name="formStudent" (submit)="saveTeacherInfo()"
+                #formStudent="ngForm">
+            <mat-grid-list [cols]="1">
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>person</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="text" #userName="ngModel" ngModel [disabled]="!isEditMode"
+                           [(ngModel)]="formTeacher['userName']" name="userName"
+                           pattern="^[_a-zA-Z0-9абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ ]{1,50}$"
+                           required
+                           maxlength="50" id="userName" placeholder="Фамилия Имя" text="UserName"
+                           autocomplete="userName">
+                    <mat-error *ngIf="!userName.valid">
+                      Введите Фамилию Имя длинной 1-50 символов
+                    </mat-error>
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>place</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="text" #country="ngModel" ngModel [disabled]="!isEditMode"
+                           [(ngModel)]="formTeacher['country']" name="country"
+                           id="country" placeholder="Город, страна" text="country"
+                           autocomplete="country" maxlength="50">
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <!--<mat-divider></mat-divider>-->
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>work</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="text" #profession="ngModel" ngModel
+                           [disabled]="!isEditMode" [(ngModel)]="formTeacher['profession']"
+                           name="profession" id="profession" maxlength="50"
+                           placeholder="Род деятельности" text="profession"
+                           autocomplete="profession">
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <!--<mat-divider></mat-divider>-->
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>phone</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="text" #phone="ngModel" ngModel [disabled]="!isEditMode"
+                           [(ngModel)]="formTeacher['phone']" name="phone"
+                           id="phone" placeholder="Телефон" text="phone" autocomplete="phone"
+                           maxlength="50" (keypress)="onPhoneInput($event)">
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <!--<mat-divider></mat-divider>-->
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>chat</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="text" #skype="ngModel" ngModel [disabled]="!isEditMode"
+                           [(ngModel)]="formTeacher['skype']" name="skype"
+                           maxlength="50" id="skype" placeholder="skype" text="skype"
+                           autocomplete="skype">
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+              <!--<mat-divider></mat-divider>-->
+              <mat-grid-list [cols]="10" rowHeight="60px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>email</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="9">
+                  <mat-input-container class="justifier">
+                    <input matInput type="email" #teacherEmail="ngModel" autocomplete="teacherEmail"
+                           name="teacherEmail" [disabled]="!isEditMode"
+                           [(ngModel)]="formTeacher['teacherEmail']" email maxlength="50"
+                           placeholder="Эл.почта (Логин)" required>
+                    <mat-error *ngIf="!teacherEmail.valid">
+                      Введите корректный формат эл.почты
+                    </mat-error>
+                  </mat-input-container>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-grid-list>
+          </form>
+          <div class="edit-btn-container" *ngIf="isEditMode">
+            <button mat-raised-button class="cancel-btn" type="button" (click)="cancelEdit()">
+              Отмена
+            </button>
+            <button mat-raised-button class="save-btn" type="button" color="primary"
+                    (click)="saveTeacherInfo()"
+                    [disabled]="teacherEmail.invalid || userName.invalid || phone.invalid">
+              Сохранить
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

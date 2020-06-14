@@ -1,0 +1,145 @@
+<div class="login-dialog" *ngIf="isDialogOpened">
+    <div id="login" class="signin-card">
+        <div class="sign-container">
+            <form
+                    role="form"
+                    name="loginForm"
+                    *ngIf="!isResetPassMode"
+                    #loginForm="ngForm"
+                    (ngSubmit)="login(loginForm)">
+                <mat-grid-list [cols]="1">
+                    <mat-grid-tile class="login-element">
+                        <div class="login-container">
+                            <div class="login-box-header">
+                                Вход
+                                <span class="login-btn-close">
+                  <mat-icon (click)="closeDialog()">close</mat-icon>
+                </span>
+                            </div>
+                            <div class="login-box-body">
+                                <mat-grid-list [cols]="5" rowHeight="75px">
+                                    <mat-grid-tile [rowspan]="1" class="login-icon">
+                                        <mat-icon>email</mat-icon>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="4">
+                                        <mat-input-container class="justifier">
+                                            <input
+                                                    matInput
+                                                    ngModel
+                                                    name="email1"
+                                                    type="email"
+                                                    #email1="ngModel"
+                                                    [(ngModel)]="formLogin['email']"
+                                                    id="email1"
+                                                    email="true"
+                                                    required
+                                                    placeholder="Эл. почта">
+                                            <div
+                                                    *ngIf="(email1.invalid && (email1.dirty || email1.touched)) || (email1.errors && loginForm.submitted)"
+                                                    class="input-validation">
+                                                <div class="iv-error" *ngIf="email1?.errors?.required">
+                                                    Это поле обязательно
+                                                </div>
+                                                <div class="iv-error"
+                                                     *ngIf="!email1?.errors?.required && email1?.errors?.email">
+                                                    Введите корректный формат эл.почты
+                                                </div>
+                                            </div>
+                                        </mat-input-container>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list [cols]="5" rowHeight="100px">
+                                    <mat-grid-tile [rowspan]="1" class="login-icon">
+                                        <mat-icon>lock</mat-icon>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="4">
+                                        <mat-input-container class="justifier">
+                                            <input
+                                                    matInput
+                                                    ngModel
+                                                    name="password"
+                                                    type="password"
+                                                    #password="ngModel"
+                                                    required
+                                                    [(ngModel)]="formLogin['password']"
+                                                    id="password"
+                                                    placeholder="Пароль"
+                                                    text="password"
+                                                    autocomplete="password">
+                                                <div
+                                                    *ngIf="(password.invalid && (password.dirty || password.touched)) || (password.errors && loginForm.submitted)"
+                                                    class="input-validation">
+                                                <div class="iv-error" *ngIf="password?.errors?.required">
+                                                    Это поле обязательно
+                                                </div>
+                                            </div>
+                                        </mat-input-container>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <div class="reset-password-container">
+                                    <a href="#" (click)="isResetPassMode=true">Забыли пароль?</a>
+                                </div>
+                                <button mat-button class="login-button" type="submit">
+                                    <mat-icon>input</mat-icon>
+                                    Войти в систему
+                                </button>
+                            </div>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+
+            <form role="form" autocomplete="off" name="emailForm" *ngIf="isResetPassMode"
+                  (submit)="resetPassword(emailForm)"
+                  #emailForm="ngForm">
+                <mat-grid-list [cols]="1">
+                    <mat-grid-tile class="login-element">
+                        <div class="login-container">
+                            <div class="login-box-header reset-pass">
+                                Изменение пароля
+                                <span class="login-btn-close">
+                  <mat-icon (click)="closeDialog()">close</mat-icon>
+                </span>
+                            </div>
+                            <div class="login-box-body">
+                                <div class="reset-pass-text">
+                                    Для изменения пароля, пожалуйста, укажите Вашу эл. почту и мы вышлем Вам новый
+                                    пароль
+                                </div>
+                                <mat-grid-list [cols]="5" rowHeight="75px">
+                                    <mat-grid-tile [rowspan]="1" class="login-icon">
+                                        <mat-icon>email</mat-icon>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile [colspan]="4">
+                                        <mat-input-container class="justifier">
+                                            <input matInput type="email" #email2="ngModel" autocomplete="email" ngModel
+                                                   [(ngModel)]="formPass['email']" name="email2"
+                                                   id="email2" email="true" required placeholder="Эл. почта">
+                                            <div
+                                                    *ngIf="(email2.invalid && (email2.dirty || email2.touched)) || (email2.errors && emailForm.submitted)"
+                                                    class="input-validation">
+                                                <div class="iv-error" *ngIf="email2?.errors?.required">
+                                                    Это поле обязательно
+                                                </div>
+                                                <div class="iv-error"
+                                                     *ngIf="!email2?.errors?.required && email2?.errors?.email">
+                                                    E-mail адресс выглядит некорректно
+                                                </div>
+                                            </div>
+                                        </mat-input-container>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                                <div class="reset-password-container reset-mode">
+                                    <a href="#" (click)="isResetPassMode=false">Вернуться к входу</a>
+                                </div>
+                                <button mat-button class="login-button" type="submit">
+                                    Отправить
+                                </button>
+                            </div>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+        </div>
+    </div>
+</div>

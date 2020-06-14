@@ -1,0 +1,14 @@
+<in-toolbar class="toolbar"></in-toolbar>
+<mat-sidenav-container class="main">
+  <mat-sidenav mode="side" opened class="sidebar">
+    <in-user-info></in-user-info>
+    <in-navigation></in-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-card class="content">
+      <mat-card-content>
+        <router-outlet (activate)="scrollTop($event)"></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

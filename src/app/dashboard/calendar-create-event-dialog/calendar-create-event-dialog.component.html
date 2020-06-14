@@ -1,0 +1,96 @@
+<div class="calendar-event-dialog">
+    <h1 mat-dialog-title>Создать событие</h1>
+    <mat-dialog-content #editDialog>
+        <div class="align-center">
+            <mat-form-field *ngIf="data.teachers_list">
+                <mat-select placeholder="Преподаватель" [(value)]="dateRange.teacher_id" (change)="checkOnEmptyFields()">
+                    <mat-option *ngFor="let teacher of data.teachers_list" [value]="teacher.id">
+                        {{teacher.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="data.students_list">
+                <mat-select placeholder="Студент" [(value)]="dateRange.student_id" (change)="checkOnEmptyFields()">
+                    <mat-option *ngFor="let student of data.students_list" [value]="student.id">
+                        {{student.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="align-center">
+            <mat-form-field>
+                <input required matInput
+                       #selectedMoments placeholder="Выбор даты"
+                       [(ngModel)]="owlDateRange"
+                       [selectMode]="'range'"
+                       (change)="checkOnEmptyFields()"
+                       [owlDateTimeTrigger]="dtPicker1"
+                       [owlDateTime]="dtPicker1">
+                <owl-date-time #dtPicker1 (afterPickerClosed)="checkOnEmptyFields()"
+                               [pickerType]="'calendar'"></owl-date-time>
+                <mat-error *ngIf="!owlDateRange">
+                    Это поле обязательно
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="align-center period">
+            <div class="period-container">
+                <div class="label">
+                    Периодичность
+                </div>
+                <div class="every-day-trigger">
+                    <mat-slide-toggle [checked]="isEveryDay" (change)="onEveryDayTrigger()">
+                        <span style="padding-right: 10px">Каждый день</span>
+                    </mat-slide-toggle>
+                </div>
+            </div>
+            <div class="flex-container">
+                <mat-checkbox *ngFor="let item of days" [disabled]="isEveryDay" required
+                              (change)="checkOnEmptyFields()"
+                              class="day-item" [(ngModel)]="item.value">
+                </mat-checkbox>
+            </div>
+            <div class="flex-container">
+                <div class="label" *ngFor="let item of days">
+                    {{item?.label}}
+                </div>
+            </div>
+        </div>
+
+        <div class="align-center">
+            <mat-form-field>
+                <input matInput required
+                       #selectedMoments2
+                       placeholder="Выбор времени"
+                       [(ngModel)]="owlTimeRange"
+                       [selectMode]="'range'"
+                       [owlDateTimeTrigger]="dtPicker2"
+                       [owlDateTime]="dtPicker2">
+                <owl-date-time #dtPicker2 (afterPickerClosed)="checkOnEmptyFields()"
+                               [pickerType]="'timer'"></owl-date-time>
+                <mat-error *ngIf="!owlTimeRange">
+                    Это поле обязательно
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <div class="align-center">
+        <mat-dialog-actions class="marginBottom ">
+            <button mat-button
+                    [mat-dialog-close]="false"
+                    class="mat-raised-button cancel-btn"
+                    (click)="onCancel();">
+                Отмена
+            </button>
+            <button mat-button
+                    [mat-dialog-close]="dateRange"
+                    class="mat-raised-button create-btn mat-primary"
+                    (click)="onSave()"
+                    [disabled]="isFormUnfilled">
+                Сохранить
+            </button>
+        </mat-dialog-actions>
+    </div>
+</div>

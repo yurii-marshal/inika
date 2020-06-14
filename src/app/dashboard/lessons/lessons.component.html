@@ -1,0 +1,41 @@
+<!-- My lessons -->
+<mat-card class="lessons">
+    <mat-card-header>
+        <h1>Название текущего курса</h1>
+        <div class="progress">
+            <div class="progress__item">
+                <span class="progress__label">Пройдено</span>
+                <div class="progress__value">45</div>
+            </div>
+            <div class="progress__item">
+                <span class="progress__label">Осталось</span>
+                <div class="progress__value">12</div>
+            </div>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <a mat-list-item href="#" class="lesson">
+                <mat-icon mat-list-icon>timeline</mat-icon>
+                <div class="lesson__column">
+                    <h4 mat-line>Тема урока</h4>
+                    <p mat-line>22.07.12</p>
+                </div>
+                <div class="lesson__column">Key words to lesson</div>
+                <a mat-button routerLink=".">Homework</a>
+                <mat-divider [inset]="true"></mat-divider>
+            </a>
+            <a mat-list-item href="#" class="lesson" *ngFor="let dummy of ' '.repeat(10).split(''), let x = index">
+                <mat-icon mat-list-icon>check_box</mat-icon>
+                <div class="lesson__column">
+                    <h4 mat-line>Тема урока</h4>
+                    <p mat-line>22.07.12</p>
+                </div>
+                <div class="lesson__column">Key words to lesson</div>
+                <a mat-button routerLink=".">Homework</a>
+                <mat-divider [inset]="true"></mat-divider>
+            </a>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+<!-- / My lessons -->

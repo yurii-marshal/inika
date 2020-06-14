@@ -1,0 +1,82 @@
+<div class="questions-container constructor">
+  <div class="question-item" *ngFor="let item of lessonsService.lessonEntity[pageType]; let i = index">
+    <section class="exercise-section">
+      <!--<div class="index constructor">{{i+1}}.</div>-->
+      <div class="exercise-item">
+        <in-exercise-radiogroup-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                     *ngIf="item.type === -2"
+                                     [index]="i"
+                                     [type]="pageType"
+                                     class="draggable-item">
+        </in-exercise-radiogroup-edit>
+        <in-exercise-checkboxes-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                     *ngIf="item.type === -1"
+                                     [index]="i"
+                                     [type]="pageType"
+                                     class="draggable-item">
+        </in-exercise-checkboxes-edit>
+        <in-exercise-answers-list-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                       [index]="i"
+                                       [type]="pageType"
+                                       *ngIf="item.type === 0"
+                                       class="draggable-item">
+        </in-exercise-answers-list-edit>
+        <in-exercise-list-order-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                     [index]="i"
+                                     [type]="pageType"
+                                     *ngIf="item.type === 1"
+                                     class="draggable-item">
+        </in-exercise-list-order-edit>
+        <in-exercise-fill-sentence-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                        [index]="i"
+                                        [type]="pageType"
+                                        *ngIf="item.type === 2"
+                                        class="draggable-item">
+        </in-exercise-fill-sentence-edit>
+        <in-exercise-matching-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                   [index]="i"
+                                   [type]="pageType"
+                                   *ngIf="item.type === 3"
+                                   class="draggable-item">
+        </in-exercise-matching-edit>
+        <in-exercise-type-word-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                    [index]="i"
+                                    [type]="pageType"
+                                    *ngIf="item.type === 4"
+                                    class="draggable-item">
+        </in-exercise-type-word-edit>
+        <in-exercise-rich-textbox-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                       [index]="i"
+                                       [type]="pageType"
+                                       *ngIf="item.type === 5"
+                                       class="draggable-item">
+        </in-exercise-rich-textbox-edit>
+        <in-exercise-reference-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                    [index]="i"
+                                    [type]="pageType"
+                                    *ngIf="item.type === 6"
+                                    class="draggable-item">
+        </in-exercise-reference-edit>
+        <in-exercise-image-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                [index]="i"
+                                [type]="pageType"
+                                *ngIf="item.type === 7"
+                                class="draggable-item">
+        </in-exercise-image-edit>
+        <in-exercise-video-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                [index]="i"
+                                [type]="pageType"
+                                *ngIf="item.type === 8"
+                                class="draggable-item">
+        </in-exercise-video-edit>
+        <in-exercise-audio-edit (onRemoveExercise)="lessonsService.onRemoveExercise(i, pageType)"
+                                [index]="i"
+                                [type]="pageType"
+                                *ngIf="item.type === 9"
+                                class="draggable-item">
+        </in-exercise-audio-edit>
+      </div>
+    </section>
+  </div>
+  <in-add-exercise-menu (onAddExercise)="lessonsService.onAddExercise($event, pageType)"></in-add-exercise-menu>
+</div>

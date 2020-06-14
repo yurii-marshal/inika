@@ -1,0 +1,81 @@
+.page-students {
+  .mat-card {
+    padding: 30px 0;
+    .page-header {
+      font-family: Roboto, sans-serif;
+      font-size: 20px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+    .mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 50px 30px;
+      align-items: center;
+    }
+    .create-btn {
+      padding: 0 20px;
+    }
+    .mat-table {
+      .mat-header-row, .mat-row {
+        padding-left: 50px;
+      }
+      .mat-row {
+        cursor: pointer;
+        padding-bottom: 15px;
+        padding-top: 15px;
+      }
+    }
+    .mat-card-title {
+      font-size: 18px;
+    }
+  }
+
+  .mat-header-cell {
+    font-size: 16px;
+  }
+
+  .mat-cell {
+    ul {
+      line-height: 1;
+    }
+  }
+
+  .mat-icon {
+    color: #DADADA;
+    &:hover {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  .mat-cell-block {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .course, .teacher {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+    margin: 0;
+    //&:hover {
+    //  color: #118AB2;
+    //}
+  }
+
+  .student {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+    margin: 0;
+    &:hover {
+
+    }
+  }
+}
+
+
+.search {
+  font-size: 14px;
+  width: 100%;
+}
+

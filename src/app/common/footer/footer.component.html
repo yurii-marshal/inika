@@ -1,0 +1,89 @@
+<footer class="in-footer">
+    <in-test-lesson-form-small class="in-footer__form"></in-test-lesson-form-small>
+    <div class="in-container in-container--small">
+        <div class="in-grid">
+            <div class="in-column-1-4">
+                <in-logo [type]="'basic'" class="in-logo" [color]="'#53d8fb'" [width]="167" [height]="58"></in-logo>
+            </div>
+            <div class="in-column-1-4">
+                <nav class="in-menu">
+                    <div class="in-menu__title">Полезное</div>
+                    <ul class="in-menu__list">
+                        <li class="in-menu__item">
+                            <a href="/offer" routerLink="/offer" class="in-menu__link" (click)="goToTop()" >Договор оферты</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/termsofuse" class="in-menu__link" (click)="goToTop()" >Правила использования сервиса</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/privacypolicy" class="in-menu__link" (click)="goToTop()" >Политика конфиденциальности</a>
+                        </li>
+                        <!-- <li class="in-menu__item">
+                            <a href="#" class="in-menu__link">Юридическая информация о нас</a>
+                        </li> -->
+                    </ul>
+                </nav>
+            </div>
+            <div class="in-column-1-4">
+                <nav class="in-menu">
+                    <div class="in-menu__title">Популярные курсы</div>
+                    <ul class="in-menu__list">
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link" (click)="goToTop()" >Детям</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link" (click)="goToTop()" >Школьникам</a>
+                        </li>
+                        <!-- <li class="in-menu__item">
+                          <a routerLink="/courses" class="in-menu__link">Взрослым</a>
+                        </li>
+                        <li class="in-menu__item">
+                          <a routerLink="/courses" class="in-menu__link">Бизнес</a>
+                        </li>
+                        <li class="in-menu__item">
+                          <a routerLink="/courses" class="in-menu__link">Путишествия</a>
+                        </li> -->
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link" (click)="goToTop()" >Подготовка к школьным <br>экзаменам, контрольным</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link" (click)="goToTop()" >Подготовка к <br>международным экзаменам</a>
+                        </li>
+                        <!-- <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link">Подготовка к <br>собеседованию</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link">Специализированные </a>
+                        </li> -->
+                    </ul>
+                </nav>
+            </div>
+            <div class="in-column-1-4">
+                <nav class="in-menu">
+                    <div class="in-menu__title">Навигация</div>
+                    <ul class="in-menu__list">
+                        <li class="in-menu__item">
+                            <a routerLink="/" class="in-menu__link" (click)="goToTop()" >Главная</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/courses" class="in-menu__link" (click)="goToTop()" >Курсы</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/prices" class="in-menu__link" (click)="goToTop()" >Стоимость</a>
+                        </li>
+                        <li class="in-menu__item">
+                            <a routerLink="/contact" class="in-menu__link" (click)="goToTop()" >Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="in-socials in-socials--inline" *ngIf="socials">
+        <ul class="in-socials__list">
+            <li *ngFor="let social of socials" class="in-socials__item">
+                <a href="{{social.url}}" class="in-socials__link">{{social.text}}</a>
+            </li>
+        </ul>
+    </div>
+</footer>

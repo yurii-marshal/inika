@@ -1,0 +1,76 @@
+.page-teachers {
+  .mat-card {
+    padding: 30px 0;
+    .page-header {
+      font-family: Roboto, sans-serif;
+      font-size: 20px;
+      color: rgba(0, 0, 0, 0.87);
+      display: flex!important;
+      align-items: center;
+      .btn-back {
+        .mat-icon {
+          &:hover {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 50px 30px;
+      align-items: center;
+    }
+    .create-btn {
+      padding: 0 20px;
+    }
+    .mat-table {
+      .mat-header-row, .mat-row {
+        padding-left: 50px;
+      }
+      .mat-row {
+        cursor: pointer;
+      }
+    }
+    .mat-card-title {
+      font-size: 18px;
+    }
+  }
+
+  .mat-header-cell {
+    font-size: 16px;
+  }
+
+  .mat-cell {
+    ul {
+      line-height: 1;
+    }
+  }
+
+  .mat-icon {
+    color: #DADADA;
+    &:hover {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+
+  .lesson {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+    width: 35%!important;
+  }
+
+  .keyword {
+    display: inline-block;
+    padding: 3px;
+  }
+  .mat-cell-block {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+.lessonColumnWidth {
+  width: 250px;
+}
+}
+

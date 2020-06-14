@@ -1,0 +1,40 @@
+<div class="in-testimonials">
+    <div class="in-testimonials__item"
+         *ngFor="let testimonial of testimonials"
+         [@testimonialState]="testimonial.state"
+         (@testimonialState.done)="animationDone($event)">
+        <img class="in-testimonials__image" *ngIf="testimonial.authorPhoto"
+             src="{{ testimonial?.authorPhoto }}" alt="{{ testimonial?.authorName }}">
+        <h4 class="in-testimonials__name">
+            {{ testimonial.authorName }}
+        </h4>
+        <p class="in-testimonials__text"
+           *ngIf="testimonial.text">
+            {{ testimonial.text.length > 295 && testimonial.view !==
+            'full' ? testimonial.text.substring(0, 295) + '...' : testimonial.text }}
+        </p>
+        <div *ngIf="testimonial.video">
+            <iframe width="560" height="315"
+                    [src]="testimonial.video | safeHtml: 'source'"
+                    frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+        </div>
+        <button class="in-testimonials__full"
+                *ngIf="testimonial.text.length > 295 && testimonial.view !== 'full'"
+                (click)="viewFull()">
+            Читать полностью
+        </button>
+        <button class="in-testimonials__full" *ngIf="testimonial.view === 'full'"
+                (click)="minimize()">
+            Скрыть
+        </button>
+    </div>
+    <button *ngIf="invisibleTestimonials.length > 0" class="in-testimonials__arrow in-testimonials__arrow--left"
+            (click)="prevSlide()">
+        <i class="ion-ios-arrow-left"></i>
+    </button>
+    <button *ngIf="testimonials.length > 1" class="in-testimonials__arrow in-testimonials__arrow--right"
+            (click)="nextSlide()">
+        <i class="ion-ios-arrow-right"></i>
+    </button>
+</div>

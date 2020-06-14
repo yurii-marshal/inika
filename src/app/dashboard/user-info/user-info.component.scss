@@ -1,0 +1,32 @@
+.user-info {
+  background: center center no-repeat;
+  background-size: cover;
+  color: #fff;
+  box-shadow: none !important;
+  border-radius: 0;
+
+  .mat-card-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .mat-card-title {
+    font-size: 14px;
+    margin: 15px 0 10px;
+  }
+
+  .mat-card-subtitle {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mat-card-title {
+    font-size: 18px;
+  }
+
+  .example-header-image {
+    background-size: cover;
+    background-position: center;
+  }
+}

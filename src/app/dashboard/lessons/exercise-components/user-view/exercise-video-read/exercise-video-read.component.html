@@ -1,0 +1,23 @@
+<div class="exercise-video-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="container" *ngIf="id">
+      <section class="player-section">
+        <h5>{{exercise['data']['name']}}</h5>
+        <youtube-player class="youtube-player"
+                        [videoId]="id" [width]="600" [height]="400"
+                        (ready)="savePlayer($event)"
+                        (change)="onStateChange($event)"
+        ></youtube-player>
+      </section>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

@@ -1,0 +1,74 @@
+<div class="exercise-audio-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="filename-label">
+      {{data?.soundObject?.name}}
+    </div>
+
+    <div class="container">
+      <div class="row existed-audio"
+           *ngIf="data['sentencesList'].length > 0 && data['sentencesList'][0]['mediaData'] !== ''">
+        <audio [src]="data['sentencesList'][0]['mediaData']" controls></audio>
+        <mat-icon color="warn" title="Удалить файл" class="delete-ex-icon" (click)="removeAudioFile()">
+          delete
+        </mat-icon>
+      </div>
+      <div class="row"
+           *ngIf="data['sentencesList'].length === 0 || data['sentencesList'][0]['mediaData'] === ''">
+        <div class="col-md-3">
+          <button (click)="fileInput.click()" class="mat-raised-button mat-primary">
+            Выбрать файл
+          </button>
+          <span
+            style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+                <input type="file" (onFileSelected)="onFileSelected($event)"
+                       accept=".mp3, .wma, audio/*" #fileInput ng2FileSelect
+                       [uploader]="uploader"/>
+            </span>
+        </div>
+        <div class="prevent-label">
+          * Только формат mp3 или wma.
+        </div>
+        <div class="col-md-9" style="margin-bottom: 40px">
+          <table class="table">
+            <tbody>
+            <tr *ngFor="let item of uploader.queue; let i = index">
+              <td>
+                <strong>{{ item?.file?.name }}</strong>
+              </td>
+              <td>
+                <div class="size-label">
+                  {{ item?.file?.size/1024/1024 | number: '1.0-1' }} MB
+                </div>
+              </td>
+              <td>
+                <mat-icon color="warn" title="Удалить файл"
+                          class="delete-ex-icon" (click)="item.remove();removeQueueFile(i)">
+                  delete
+                </mat-icon>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

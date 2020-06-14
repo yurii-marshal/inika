@@ -1,0 +1,46 @@
+<div class="exercise-radiogroup-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Введите вопрос (один ответ на вопрос)"
+                 [name]="data.header" [(ngModel)]="data.header">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon"
+                (click)="lessonsService.deleteQuestion(type, index)">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="radio-container">
+    <div class="radio-section">
+      <mat-radio-group class="radio-group" [(ngModel)]="data['answer']">
+        <mat-radio-button class="radio-button"
+                          *ngFor="let select of data.selected; let k = index;"
+                          [value]="data.selected[k]"></mat-radio-button>
+      </mat-radio-group>
+      <div class="radio-items">
+        <div *ngFor="let input of data.inputs; let m = index;" class="radio-item">
+          <mat-form-field class="new-word-input">
+            <input matInput placeholder="Введите вариант ответа" (change)="checkValidation()"
+                   [name]="input.text" [(ngModel)]="input.text">
+          </mat-form-field>
+          <mat-icon class="delete-icon"
+                    (click)="lessonsService.deleteQuestionItem(index, m, type);checkValidation();">
+            delete
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+    <button mat-stroked-button color="primary" class="add-sentence-btn"
+            [disabled]="data.inputs.length > 0 && !data.inputs[data.inputs.length - 1].text"
+            (click)="lessonsService.addQuestionItem(index, data.type, type);data['validationStatus']='invalid'">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

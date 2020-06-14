@@ -1,0 +1,83 @@
+<!-- All students -->
+<div class="page-teachers">
+  <mat-card class="all-people">
+    <mat-card-header>
+      <div class="page-header">
+        <div class="page-crumbs">
+          <button mat-mini-fab class="btn-back" *ngIf="authService.getRole() === 1"
+                  [routerLink]="['/dashboard/courses/']"
+                  title="Back to courses list">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          <!--<div class="page-label">-->
+          <!--Lesson page-->
+          <!--</div>-->
+        </div>
+        <div>
+          Список уроков
+        </div>
+      </div>
+      <button mat-raised-button color="primary"
+              *ngIf="authService.getRole() === 1"
+              (click)="createLesson()"
+              class="create-btn" type="button">
+        Создать урок
+      </button>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="all-people__container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" matSort
+                 matSortActive="lessonsCompleted"
+                 (matSortChange)="sortData($event)"
+                 matSortDisableClear
+                 matSortDirection="asc">
+
+        <ng-container matColumnDef="lesson" #lesson>
+          <mat-header-cell *matHeaderCellDef disableClear>Название урока</mat-header-cell>
+          <mat-cell *matCellDef="let element" [routerLink]="['/dashboard/lessons/', element.id]">
+            <a class="lesson">
+              {{element.name}}
+            </a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="keywords">
+          <mat-header-cell *matHeaderCellDef> Ключевые слова</mat-header-cell>
+          <mat-cell [routerLink]="['/dashboard/lessons/', element.id]"
+                    class="mat-cell-block"
+                    *matCellDef="let element">
+              <span class="keyword" *ngFor="let keyword of element?.description?.split(','); let i = index">
+                {{ i > element?.description?.split(',').length - 2 ? keyword : keyword + ', '}}
+              </span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="controls">
+          <mat-header-cell *matHeaderCellDef [ngClass]="'flex-width-100'"></mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index;" [ngClass]="'flex-width-100'">
+            <button mat-icon-button (click)="editLesson(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteLesson(element);">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [length]="length"
+                     [pageIndex]="pageIndex"
+                     [hidePageSize]="true"
+                     showFirstLastButtons
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+  <!-- / All students -->
+</div>
+

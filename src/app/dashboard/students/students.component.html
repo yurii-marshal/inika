@@ -1,0 +1,106 @@
+<!-- All students -->
+<div class="page-students">
+    <mat-card class="all-people">
+        <mat-card-header>
+            <div class="page-header">Студенты</div>
+            <button mat-raised-button color="primary" (click)="createStudent()"
+                    *ngIf="authService.getRole() === 1" class="create-btn" type="button">
+                Создать профиль
+            </button>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="all-people__container mat-elevation-z8">
+            <mat-table
+                    #table [dataSource]="dataSource"
+                    matSort
+                    matSortActive="lesson_qnt"
+                    matSortDirection="desc"
+                    (matSortChange)="sortData($event)"
+                    matSortDisableClear>
+
+                <ng-container matColumnDef="student">
+                    <mat-header-cell *matHeaderCellDef> Студент</mat-header-cell>
+                    <mat-cell *matCellDef="let element" (click)="openStudentProfile(element)">
+                      <p class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/students/edit/', element.id]">
+                        {{element.username}}
+                      </p>
+                      <p class="student table-row" *ngIf="authService.getRole() > 1">{{element.username}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="teacher">
+                    <mat-header-cell *matHeaderCellDef> Преподаватель</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <p *ngFor="let teacher of element.teachers" class="teacher">
+                          <a class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/teachers/edit/', teacher.id]">
+                            {{teacher.name}}
+                          </a>
+                          <a class="table-row" *ngIf="authService.getRole() > 1">{{teacher.name}}</a>
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="course">
+                    <mat-header-cell *matHeaderCellDef> Курс</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <p class="course" *ngFor="let course of element.courses">
+                          <a class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/course-profile/', course.id]">
+                            {{course.name}}
+                          </a>
+                          <a class="table-row" *ngIf="authService.getRole() > 1">{{course.name}}</a>
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="lesson_qnt">
+                    <mat-header-cell
+                            *matHeaderCellDef
+                            mat-sort-header
+                            disableClear>
+                        Уроков оплачено
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        {{element?.lesson_qnt}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="controls">
+                    <mat-header-cell *matHeaderCellDef [ngClass]="'flex-width-100'"></mat-header-cell>
+                    <mat-cell *matCellDef="let element" [ngClass]="'flex-width-100'">
+                        <button mat-icon-button (click)="editStudentProfile(element)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="deleteStudent(element)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator
+                           [length]="length"
+                           [pageIndex]="pageIndex"
+                           [pageSize]="pageSize"
+                           [pageSizeOptions]="pageSizeOptions"
+                           [hidePageSize]="true"
+                           showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+    <!-- / All students -->
+</div>
+
+<!--<pre>-->
+<!--{{ studentsList | json }}-->
+<!--</pre>-->
+
+<!--<mat-paginator #paginator-->
+<!--[length]="length"-->
+<!--[pageIndex]="pageIndex"-->
+<!--[pageSize]="pageSize"-->
+<!--(page)="pageEvent = getServerData($event)"-->
+<!--[pageSizeOptions]="pageSizeOptions"-->
+<!--[hidePageSize]="true"-->
+<!--showFirstLastButtons></mat-paginator>-->

@@ -1,0 +1,231 @@
+<div class="user-profile">
+  <button mat-mini-fab [routerLink]="['/dashboard/students/']"
+          color="primary" class="back-btn">
+    <mat-icon title="Назад к с списку студентов">
+      arrow_back
+    </mat-icon>
+  </button>
+  <mat-tab-group [selectedIndex]="selectedTabIndex">
+    <mat-tab label="КАЛЕНДАРЬ" [disabled]="isEditMode">
+      <div *ngIf="eventCalendarService.calendarOptions"
+           id="fullCalendar">
+        <ng-fullcalendar #ucCalendar class="custom-calendar-styles"
+                         [(eventsModel)]="events"
+                         [options]="eventCalendarService.calendarOptions"
+                         (dayClick)="eventCalendarService.dayClick($event.detail, onDayClick, this)"
+                         (eventClick)="openEditEventDialog($event.detail)"
+                         (eventDrop)="openEditEventDialog($event.detail)"
+                         (eventResize)="openEditEventDialog($event.detail)"
+                         (clickButton)="eventCalendarService.clickButton($event.detail)">
+        </ng-fullcalendar>
+        <div class="calendar-footer">
+          <div class="payed-lessons">
+            <div class="text-label">Оплачено уроков:</div>
+            <div class="count-label" title="Редактировать"
+                 *ngIf="!isEditCount" (click)="setEditCount()">
+              {{payedLessonsCount}}
+            </div>
+            <div class="count-input"
+                 [ngStyle]="{'display': isEditCount ? 'block' : 'none'}">
+              <mat-input-container class="justifier">
+                <input matInput type="number"
+                       #payedlessonscount ngModel min="0" max="999" step="1"
+                       [(ngModel)]="payedLessonsCount" name="payedlessonscount"
+                       maxlength="3" id="payedlessonscount" autocomplete="count"
+                       (keypress)="onEnterEditCount($event)">
+              </mat-input-container>
+            </div>
+            <div class="edit-count" *ngIf="authService.getRole() === 1 && !isEditCount">
+              <mat-icon title="Редактировать" (click)="setEditCount()">edit</mat-icon>
+            </div>
+            <div class="edit-count" *ngIf="isEditCount">
+              <mat-icon (click)="editPayedLessonsCount(true)" title="Сохранить">save</mat-icon>
+            </div>
+            <div class="edit-count" *ngIf="isEditCount">
+              <mat-icon (click)="editPayedLessonsCount(false)" title="Отмена">cancel</mat-icon>
+            </div>
+          </div>
+          <button mat-button class="mat-raised-button create-btn mat-primary"
+                  (click)="createEventDialog({})"
+                  *ngIf="authService.getRole() <= 2"
+                  [disabled]="isEditCount">
+            Добавить урок
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="ПРОФИЛЬ">
+      <mat-card>
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content>
+          <form
+            [formGroup]="form"
+            (submit)="onSaveStudent()">
+            <div class="user_details">
+              <div
+                class="user_photo"
+                (click)="pickUserPhoto.click()">
+                <img class="imagePreview"
+                     [src]="imagePreview"
+                     [alt]="form.value.username"
+                     *ngIf="imagePreview && imagePreview !== '' && form.get('avatar_img').valid">
+              </div>
+              <input
+                type="file"
+                #pickUserPhoto
+                [disabled]="!isEditMode"
+                (change)="onImagePicked($event)"
+              >
+              <div class="profile_info">
+                <div class="user_name">{{form.get('username').value}}</div>
+                <div class="students" *ngIf="isEditMode">
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Преподаватели"
+                      [formControlName]="'teachersInputField'"
+                      name="teachers"
+                      multiple>
+                      <mat-option
+                        *ngFor="let teacher of teachersList"
+                        [value]="teacher.id">
+                        {{teacher.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="courses" *ngIf="isEditMode">
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="Курсы"
+                      [formControlName]="'coursesInputField'"
+                      name="courses"
+                      multiple>
+                      <mat-option
+                        *ngFor="let course of coursesList"
+                        [value]="course.id">
+                        {{course.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="showStudentsAndCourses" *ngIf="!isEditMode">
+                  <div class="students">
+                    <p *ngIf="student?.teachers?.length > 0">Преподаватели</p>
+                    <span *ngFor="let teacher of student?.teachers; let i = index">{{ i === student?.teachers.length - 1 ? teacher.name : teacher.name + ', '}}</span>
+                  </div>
+                  <div class="courses">
+                    <p *ngIf="student?.courses?.length > 0">Курсы</p>
+                    <span *ngFor="let course of student?.courses; let i = index">{{ i === student?.courses.length - 1 ? course.name : course.name + ', ' }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile_controls" *ngIf="authService.getRole() === 1 && !isEditMode">
+                <button mat-icon-button type="button" (click)="enableForm()">
+                  <mat-icon edit_icons>edit</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="deleteStudent()">
+                  <mat-icon edit_icons>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-form-field>
+              <mat-icon>person</mat-icon>
+              <input
+                matInput
+                name="username"
+                formControlName="username"
+                placeholder="Фамилия Имя">
+              <mat-error *ngIf="form.get('username').invalid">
+                Введите Фамилию Имя длинной 1-50 символов
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-icon>place</mat-icon>
+              <input
+                matInput
+                name="address"
+                formControlName="address"
+                placeholder="Город, страна"
+              >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-icon>work</mat-icon>
+              <input
+                matInput
+                name="activity"
+                formControlName="activity"
+                placeholder="Род деятельности"
+              >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-icon>phone</mat-icon>
+              <input
+                matInput
+                name="phone"
+                formControlName="phone"
+                placeholder="Телефон"
+                (keypress)="onPhoneInput($event)"
+              >
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-icon>chat</mat-icon>
+              <input
+                matInput
+                name="skype"
+                formControlName="skype"
+                placeholder="Skype"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="emailInput">
+              <mat-icon>email</mat-icon>
+              <input
+                matInput
+                name="email"
+                formControlName="email"
+                placeholder="Эл.почта (Логин)"
+                email (change)="emailUsed=false"
+              >
+              <mat-error *ngIf="form.get('email').invalid && !emailUsed">
+                Введите корректный формат эл.почты
+              </mat-error>
+              <p *ngIf="emailUsed && !form.get('email').invalid" class="emailExist">
+                {{ emailUsed }}
+                <!--Этот адрес электронной почты уже используется. Попробуйте другой.-->
+              </p>
+            </mat-form-field>
+
+            <div class="btn-container" *ngIf="isEditMode">
+              <button
+                mat-raised-button
+                class="cancel-btn"
+                type="button"
+                (click)="cancelEdit()">
+                Отмена
+              </button>
+              <button
+                mat-raised-button
+                class="save-btn"
+                color="primary"
+                type="submit"
+                [disabled]="form.invalid">
+                Сохранить
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<!--<pre>-->
+<!--{{ form.value | json }}-->
+<!--</pre>-->
+<!--<pre>-->
+<!--{{ teacher | json }}-->
+<!--</pre>-->

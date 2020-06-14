@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Создать курс</h1>
+<mat-dialog-content>
+  <div class="align-center">
+    <mat-form-field class="inputField">
+      <input
+        matInput
+        ngModel
+        #courseName="ngModel"
+        [(ngModel)]="data.courseName"
+        placeholder="Название курса"
+        minlength="1"
+        maxlength="50"
+        required>
+      <mat-error *ngIf="courseName.value?.length <= 1">
+        Это поле обязательно
+      </mat-error>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<div class="align-center">
+  <mat-dialog-actions class="marginBottom ">
+    <button
+      mat-button
+      class="mat-raised-button cancel-btn"
+      (click)="onCancel();">Отмена
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="data.courseName"
+      class="mat-raised-button create-btn mat-primary"
+      [disabled]="courseName.invalid">Создать
+    </button>
+  </mat-dialog-actions>
+</div>

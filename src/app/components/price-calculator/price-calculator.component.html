@@ -1,0 +1,114 @@
+<div *ngIf="sortedCourses.length > 0" class="in-price-calculator">
+    <ul class="in-categories in-price-calculator__navigation">
+        <li class="in-categories__item" *ngFor="let item of sortedCourses">
+            <button (click)="setCategory(item.category.slug)" class="in-button in-categories__button"
+                    [ngClass]="{'in-button--highlighted': item.category.slug === currentInfo.category.slug}">{{
+                item.category.name }}
+            </button>
+        </li>
+    </ul>
+    <div class="in-price-calculator__body">
+        <div class="in-price-calculator__info">
+            <div class="in-price-calculator__wrapper">
+                <ul class="in-courses" *ngIf="currentCategoryInfo">
+                    <li class="in-courses__item" *ngFor="let course of currentCategoryInfo.courses"
+                        [ngClass]="{'in-courses__item--active': course.name === currentInfo.courses[0].name}">
+                        <h3 class="in-courses__title" (click)="setCourse(course)">{{ course.name }}</h3>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="in-currencies-selector" *ngIf="currencies">
+                        <li class="in-currencies-selector__item" *ngFor="let currency of currencies">
+                            <button class="in-currencies-selector__button" (click)="setCurrency(currency)"
+                                    [ngClass]="{'in-currencies-selector__button--active': currentCurrency.name === currency.name}">
+                                {{
+                                currency.name }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="in-price-calculator__table in-table">
+            <div class="in-table__header">
+                <div class="in-table__row">
+                    <div class="in-table__cell in-table__cell--left">Количество занятий</div>
+                    <div class="in-table__cell in-table__cell--dark in-table__cell--rounded-top in-center"
+                         *ngFor="let price of currentPrices">{{ price.duration }} минут
+                    </div>
+                </div>
+            </div>
+            <div class="in-table__body">
+                <div class="in-table__row" *ngFor="let item of lessons; let i = index">
+                    <div class="in-table__cell in-table__cell--left">
+                        <div class="in-lessons-count">{{ item.number }}</div>
+                        <div class="in-discount in-badge" *ngIf="item.discount">-{{ item.discount }}%</div>
+                    </div>
+                    <label class="in-table__cell in-table__parent"
+                           *ngFor="let price of currentPrices; let priceIndex = index">
+                        <div class="in-table__child">
+              <span class="in-radio">
+                <input type="radio"
+                       [value]="i * 2 + priceIndex + 1"
+                       class="in-radio__input"
+                       name="price"
+                       [formControl]="selectedOptionControl">
+                <span></span>
+              </span>
+                        </div>
+                        <div class="in-table__child">
+                            <div class="in-price in-price--total">{{
+                                priceOptions[i * 2 + priceIndex]
+                                | currency: currentCurrency
+                                }}
+                            </div>
+                            <div class="in-price in-price--single">{{
+                                price.value - price.value * (item.discount ? item.discount : 0) / 100
+                                | currency: currentCurrency
+                                }}/занятие
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="in-table__row">
+                    <div class="in-table__cell">
+                        <input type="number"
+                               class="in-wanted-lessons"
+                               name="wantedLessons"
+                               min="1"
+                               max="999"
+                               [formControl]="wantedLessonsControl"
+                               id="wantedLessons" placeholder="40"
+                               value="{{ wantedLessons }}">
+                        <div class="in-discount in-badge" *ngIf="customDiscount">-{{ customDiscount }}%</div>
+                    </div>
+                    <label class="in-table__cell in-table__parent" *ngFor="let price of currentPrices; let i = index">
+                        <div class="in-table__child">
+              <span class="in-radio">
+                <input type="radio"
+                       [value]="lessons.length * currentPrices.length + i + 1"
+                       class="in-radio__input"
+                       name="price"
+                       [formControl]="selectedOptionControl">
+                <span></span>
+              </span>
+                        </div>
+                        <div class="in-table__child">
+                            <div class="in-price in-price--total">{{
+                                priceOptions[lessons.length * currentPrices.length + i]
+                                | currency: currentCurrency
+                                }}
+                            </div>
+                            <div class="in-price in-price--single">{{
+                                price.value - price.value * (customDiscount ? customDiscount : 0) / 100
+                                | currency: currentCurrency
+                                }}/занятие
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

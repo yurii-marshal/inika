@@ -1,0 +1,102 @@
+<div class="page-teachers">
+  <mat-card class="all-people">
+    <mat-card-header>
+      <div class="page-header">Курсы</div>
+      <button mat-raised-button color="primary" *ngIf="authService.getRole() === 1" (click)="createCourse()"
+              class="create-btn">
+        Создать курс
+      </button>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="all-people__container mat-elevation-z8">
+      <mat-table
+        #table
+        [dataSource]="dataSource"
+        matSort
+        matSortActive="access"
+        (matSortChange)="sortData($event)"
+        matSortDisableClear
+        matSortDirection="asc">
+        <ng-container matColumnDef="course">
+          <mat-header-cell *matHeaderCellDef disableClear> Название курса</mat-header-cell>
+          <mat-cell *matCellDef="let element" (click)="openCoursePage(element);">
+            <a class="course table-row" *ngIf="authService.getRole() > 1">
+              {{element.name}}
+            </a>
+            <p class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/course-profile/', element.id]">
+              {{element.name}}
+            </p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="teachers">
+          <mat-header-cell *matHeaderCellDef> Преподаватели</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <p *ngFor="let teacher of element.teachers" class="teacher">
+              <a class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/teachers/edit/', teacher.id]">
+                {{teacher.name}}
+              </a>
+              <a class="table-row" *ngIf="authService.getRole() > 1">{{teacher.name}}</a>
+            </p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="students">
+          <mat-header-cell *matHeaderCellDef> Студенты</mat-header-cell>
+          <mat-cell class="mat-cell-block" *matCellDef="let element">
+            <p *ngFor="let student of element.students" class="student">
+              <a class="table-link" *ngIf="authService.getRole() === 1" [routerLink]="['/dashboard/students/edit/', student.id]">
+                {{student.name}}
+              </a>
+              <a class="student table-row" *ngIf="authService.getRole() > 1">{{student.name}}</a>
+            </p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="access">
+          <mat-header-cell *matHeaderCellDef disableClear>
+            Доступ
+          </mat-header-cell>
+          <mat-cell
+            *matCellDef="let element">
+            <mat-slide-toggle
+              #toggleButton
+              [checked]="element?.is_active === 1"
+              color="primary"
+              (click)="toggle(element, toggleButton)">
+            </mat-slide-toggle>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="controls">
+          <mat-header-cell *matHeaderCellDef [ngClass]="'flex-width-100'"></mat-header-cell>
+          <mat-cell *matCellDef="let element" [ngClass]="'flex-width-100'">
+            <button mat-icon-button (click)="editCourse(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteCourse(element);">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <mat-paginator #paginator [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     [length]="length"
+                     [pageIndex]="pageIndex"
+                     [hidePageSize]="true"
+                     showFirstLastButtons
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!--<pre>-->
+<!--{{ dataSource.data | json }}-->
+<!--</pre>-->
+<!--<pre>-->
+<!--{{ courses | json }}-->
+<!--</pre>-->

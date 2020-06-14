@@ -1,0 +1,36 @@
+<div class="exercise-type-word-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div mat-list-item class="list-item user" *ngFor="let sentence of exercise['data']['sentencesList']; let i = index">
+      <div class="sentence-container">
+        <!--<div class="sentence-index">{{i + 1}}.</div>-->
+        <div class="wrapper">
+          <div class="sentence-body user" *ngFor="let sample of sentence.sentenceSamples; let j = index;">
+            <div class="item-line" *ngFor="let text of sample.line; let k = index;">
+              <div class="text-sample" *ngIf="text.type === 'text'">
+                {{text.value}}
+              </div>
+              <div class="answer-sample user" *ngIf="text.type === 'input'">
+                <input type="text" *ngIf="exercise['feedback'][i]"
+                       placeholder="Напишите ответ" (keypress)="clearFeedback($event)"
+                       [ngClass]="{'wrong-answer': exercise['feedback'][i][j][k]?.isError, 'right-answer': exercise['feedback'][i][j][k]?.isSuccess}"
+                       AutoSizeInput [maxWidth]="770" [minWidth]="100"
+                       [(ngModel)]="exercise['data']['sentencesList'][i]['sentenceSamples'][j]['line'][k]['value']"
+                       name="answerSample"
+                       #answerSample="ngModel"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

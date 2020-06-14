@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Подтверждение</h2>
+
+<mat-dialog-content>
+    <div class="dialog-message">
+        Вы действительно хотите удалить запись?
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Отмена</button>
+    <button class="mat-raised-button mat-warn"(click)="save()">Удалить</button>
+</mat-dialog-actions>

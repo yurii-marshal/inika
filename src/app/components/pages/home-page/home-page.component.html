@@ -1,0 +1,139 @@
+<a id="scrollToTop"></a>
+<in-home-page-hero></in-home-page-hero>
+<in-login-dialog></in-login-dialog>
+
+<section class="in-home-page-advantages">
+  <div class="in-container in-container--small">
+    <div class="in-grid">
+      <article class="in-advantage in-column-1-4">
+        <div class="in-advantage__icon">
+          <img src="assets/images/advantage-1.png" alt="Гибкий график занятий">
+        </div>
+        <h3 class="in-advantage__title in-title in-title--highlighted">
+          <span>Гибкий график <br>занятий</span>
+        </h3>
+        <p class="in-advantage__description">
+          Вы сами определяете график своих занятий,
+          подстраивая его под своё расписание.
+        </p>
+      </article>
+      <article class="in-advantage in-column-1-4">
+        <div class="in-advantage__icon">
+          <img src="assets/images/advantage-2.png" alt="Экономия времени">
+        </div>
+        <h3 class="in-advantage__title in-title in-title--highlighted"><span>Экономия <br>времени</span></h3>
+        <p class="in-advantage__description">
+          Вы не тратите время на дорогу к репетитору или на курсы и занимаетесь дома в комфортной обстановке.
+        </p>
+      </article>
+      <article class="in-advantage in-column-1-4">
+        <div class="in-advantage__icon">
+          <img src="assets/images/advantage-4.png" alt="Доступ к обучению из любой точки мира">
+        </div>
+        <h3 class="in-advantage__title in-title in-title--highlighted">
+          <span>Доступ к обучению из <br>любой точки мира</span></h3>
+        <p class="in-advantage__description">Даже если у вас на горизонте появилась командировка или отпуск, то
+          это не
+          повод прекращать занятия.
+        </p>
+      </article>
+      <article class="in-advantage in-column-1-4">
+        <div class="in-advantage__icon">
+          <img src="assets/images/advantage-3.png" alt="Профессиональный подход">
+        </div>
+        <h3 class="in-advantage__title in-title in-title--highlighted"><span>Профессиональный <br>подход</span>
+        </h3>
+        <p class="in-advantage__description">Наши преподаватели проходят качественный отбор; <br>Используют
+          только самые
+          эффективные методы и современные технологии.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="in-more-advantages in-section">
+  <div class="in-container in-container--small">
+    <div class="in-grid in-grid--more-gutter">
+      <div class="in-column-1-2 in-grid in-grid--no-gutter">
+        <div class="in-column-1-2" style="background-color: #fffd82">
+          <img class="in-fully-centered" src="assets/images/webcam.png" alt="Webcam">
+        </div>
+        <div class="in-column-1-2" style="background-color: #ff9b71">
+          <img class="in-fully-centered" src="assets/images/ebook.png" alt="Ebook">
+        </div>
+        <div class="in-column-1-2" style="background-color: #53d8fb">
+          <img class="in-fully-centered" src="assets/images/chat.png" alt="Chat">
+        </div>
+        <div class="in-column-1-2" style="background-color: #ef476f">
+          <img class="in-fully-centered" src="assets/images/student.png" alt="Student">
+        </div>
+      </div>
+      <div class="in-column-1-2 in-more-advantages__text">
+        <h2 class="in-more-advantages__title in-title in-title--highlighted"><span>А также</span></h2>
+        <ul class="in-more-advantages-list">
+          <li class="in-more-advantages-list__item">
+            Занятия 1 на 1 с преподавателем
+          </li>
+          <li class="in-more-advantages-list__item">
+            Бесплатный пробный урок
+          </li>
+          <li class="in-more-advantages-list__item">
+            Отмена и бесплатный перенос занятия <br>за 10 часов
+          </li>
+          <li class="in-more-advantages-list__item">
+            Контроль баланса уроков в личном <br>кабинете
+          </li>
+          <li class="in-more-advantages-list__item">
+            Преподаватель, который подходит <br>именно вам.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="in-process in-section">
+  <h2 class="in-title in-section__title">Процесс обучения</h2>
+  <ngx-slick class="in-process__slider" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let slide of slides; let i = index" class="in-process__slide">
+      <div class="in-process__left">
+        <img src="{{ slide?.image?.url }}" alt="{{ slide?.image?.alt }}">
+      </div>
+      <div class="in-process__right">
+        <div class="in-process__step">Шаг {{ i + 1 }}</div>
+        <h3 class="in-process__name in-title in-title--highlighted"><span>{{ slide.title }}</span></h3>
+        <p class="in-process__description">{{ slide.text }}</p>
+      </div>
+    </div>
+    <div class="in-process__navigation in-slider-nav">
+      <button class="in-slider-nav__button in-slider-nav__button--prev">
+        <i class="ion-ios-arrow-left"></i>
+      </button>
+      <button class="in-slider-nav__button in-slider-nav__button--next">
+        <i class="ion-ios-arrow-right"></i>
+      </button>
+    </div>
+    <div class="in-process__actions">
+      <button class="in-button in-button--accent" (click)="gotoTop()">Хочу пробный урок</button>
+      <button class="in-button in-process__next">Следующий шаг</button>
+    </div>
+  </ngx-slick>
+</section>
+
+<section class="in-section in-courses-list">
+  <div class="in-container in-container--small">
+    <h2 class="in-section__title in-title">Курсы</h2>
+    <in-courses-list [showHeader]="false" [category]="'basic'"></in-courses-list>
+    <div class="in-courses-list__more">
+      <a routerLink="/courses" class="in-button in-button--accent">Все курсы</a>
+    </div>
+  </div>
+</section>
+
+<section class="in-section in-testimonials">
+  <div class="in-container in-container--small">
+    <h2 class="in-section__title in-title">Отзывы</h2>
+    <in-testimonials></in-testimonials>
+  </div>
+</section>

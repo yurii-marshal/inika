@@ -1,0 +1,80 @@
+<div class="exercise-answers-list-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="content-section">
+    <mat-nav-list>
+      <div mat-list-item class="list-item" *ngFor="let sentence of data['sentencesList']; let i = index">
+        <div class="sentence-container">
+          <div class="index">
+            {{i+1}}.
+          </div>
+          <div class="sentence-body">
+            <div class="text-sample">
+              <input type="text" placeholder="Первая часть предложения"
+                     AutoSizeInput [maxWidth]="790"
+                     [(ngModel)]="sentence['textSamples'][0]" name="sample1"
+                     #sample1="ngModel"/>
+            </div>
+            <div class="drop-sample" *ngIf="sentence['dropSamples']">
+              <mat-form-field class="chip-list">
+                <mat-chip-list #chipList>
+                  <mat-chip
+                    *ngFor="let item of data['sentencesList'][i]?.dropSamples; let j = index"
+                    [selectable]="true"
+                    title="Нажмите для обозначения в качестве правильного ответа"
+                    [ngClass]="{'primary' : data['sentencesList'][i]?.dropSamples[j]?.answer,
+                                                  'accent' : !data['sentencesList'][i]?.dropSamples[j]?.answer}"
+                    (click)="userAnswerList[i]=item.text;setAnswer(i, item.text)"
+                    (remove)="removeDropItem(i, item)">
+                    {{item?.text}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Введите новый пункт и нажмите Enter"
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="false"
+                         (matChipInputTokenEnd)="addDropItem(i, $event)"/>
+                </mat-chip-list>
+              </mat-form-field>
+              <!--<div *ngFor="let item of data['sentencesList'][i]?.dropSamples">{{item?.text}}</div>-->
+            </div>
+            <div class="text-sample">
+              <input type="text" [(ngModel)]="sentence['textSamples'][1]"
+                     AutoSizeInput [maxWidth]="790"
+                     name="sample2" placeholder="{{'Вторая часть предложения'}}"
+                     #sample2="ngModel"/>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <mat-icon title="Удалить предложение"
+                    class="main-fab-mini-btn" (click)="deleteSentence(i)">
+            delete
+          </mat-icon>
+        </div>
+      </div>
+    </mat-nav-list>
+    <div class="">
+      <button mat-stroked-button color="primary" title="Новое предложение"
+              class="add-sentence-btn" (click)="addSentence()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

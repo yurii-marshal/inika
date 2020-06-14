@@ -1,0 +1,19 @@
+.in-page-banner {
+  padding: 160px 0 50px;
+  @media (min-width: 768px) {
+    padding: 130px 0 50px;
+  }
+  &__wrapper {
+    max-width: 730px;
+    margin: 0 auto;
+    display: flex;
+  }
+  &__title {
+    flex: 0 0 40%;
+    padding-right: 20px;
+    margin: 0;
+  }
+  &__description {
+    margin: 0;
+  }
+}

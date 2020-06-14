@@ -1,0 +1,109 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+$mat-primary: (
+        50 : #e0f7fd,
+        100 : #b3ecfb,
+        200 : #80dff9,
+        300 : #4dd2f6,
+        400 : #26c8f4,
+        500 : #00bef2,
+        600 : #00b8f0,
+        700 : #00afee,
+        800 : #00a7ec,
+        900 : #0099e8,
+        A100 : #ffffff,
+        A200 : #dcf2ff,
+        A400 : #a9deff,
+        A700 : #90d4ff,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+$mat-secondary: (
+        50 : #e6e9ec,
+        100 : #c0c8d0,
+        200 : #96a4b1,
+        300 : #6b7f92,
+        400 : #4c637a,
+        500 : #2c4863,
+        600 : #27415b,
+        700 : #213851,
+        800 : #1b3047,
+        900 : #102135,
+        A100 : #73aeff,
+        A200 : #4090ff,
+        A400 : #0d72ff,
+        A700 : #0066f2,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+$mat-warn: (
+        50 : #fde9ee,
+        100 : #fac8d4,
+        200 : #f7a3b7,
+        300 : #f47e9a,
+        400 : #f16385,
+        500 : #ef476f,
+        600 : #ed4067,
+        700 : #eb375c,
+        800 : #e82f52,
+        900 : #ed5e68,
+        A100 : #ffffff,
+        A200 : #ffe8eb,
+        A400 : #ffb5c0,
+        A700 : #ff9caa,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$inika-app-primary: mat-palette($mat-primary);
+$inika-app-accent: mat-palette($mat-secondary);
+$inika-app-warn: mat-palette($mat-warn, 900);
+
+$inika-app-theme: mat-light-theme($inika-app-primary, $inika-app-accent, $inika-app-warn);
+
+@include angular-material-theme($inika-app-theme);
+
+

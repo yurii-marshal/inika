@@ -1,0 +1,49 @@
+.in-test-lesson-form {
+  align-items: stretch;
+  // &__left {
+  //   display: flex;
+  //   flex: 0 0 calc(58% - 5px);
+  // }
+  // &__right {
+    // display: flex;
+    // flex: 0 0 calc(42% - 5px);
+  // }
+  &--small {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background-color: #118ab2;
+    padding: 15px;
+    .in-form__field {
+      margin-top: auto;
+      height: 100%;
+    }
+    .in-form__input {
+      font-size: 20px;
+      padding: 10px;
+    }
+    .in-form__submit {
+      max-width: 300px;
+      height: 100%;
+      display: block;
+      margin: 0 auto;
+      font-size: 14px;
+      font-weight: 300;
+      font-family: Rubik;
+      letter-spacing: -0.1px;
+      color: #118ab2;
+      background-color: #fff;
+      padding: 10px;
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
+      &[disabled],
+      &:hover {
+        background-color: rgba(255, 255, 255, .8);
+      }
+    }
+    #testLessonLink {
+      text-decoration: none;
+    }
+  }
+}

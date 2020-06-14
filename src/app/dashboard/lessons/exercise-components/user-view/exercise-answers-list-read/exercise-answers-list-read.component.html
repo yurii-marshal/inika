@@ -1,0 +1,39 @@
+<div class="exercise-answers-list-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <mat-nav-list>
+      <div mat-list-item class="list-item user" *ngFor="let sentence of exercise['data']['sentencesList']; let i = index">
+        <div class="sentence-container">
+          <div class="sentence-body user">
+            <mat-icon *ngIf="exercise['feedback'][i]?.isError" class="error">close</mat-icon>
+            <mat-icon *ngIf="exercise['feedback'][i]?.isSuccess" class="success">check</mat-icon>
+            <div class="text-sample">
+              {{sentence['textSamples'][0]}}
+            </div>
+            <div class="drop-sample" *ngIf="sentence['dropSamples']">
+              <mat-form-field>
+                <mat-select placeholder="Выберите ответ" [(ngModel)]="sentence['answer']"
+                            (selectionChange)="exercise['feedback']=[];setAnswer(i, $event.value)">
+                  <mat-option *ngFor="let item of sentence['dropSamples']; let j = index;" [value]="item.id">
+                    {{item.text}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="text-sample">
+              {{sentence['textSamples'][1]}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-nav-list>
+  </div>
+  <mat-divider></mat-divider>
+</div>

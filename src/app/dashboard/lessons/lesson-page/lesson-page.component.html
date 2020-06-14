@@ -1,0 +1,65 @@
+<!-- My lessons -->
+<div class="lesson-page">
+  <mat-card>
+    <mat-card-header id="mat-header">
+      <div class="lesson-header">
+        <div class="page-crumbs">
+          <button mat-mini-fab class="btn-back"
+                  [routerLink]="['/dashboard/course-profile/', courseService.currentCourseId]"
+                  title="Back to lessons list">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+        <span *ngIf="authService.getRole() !== 1 || !isAdminRole">
+          {{lessonsService.userLesson['name']}}
+        </span>
+        <mat-form-field class="new-word-input" *ngIf="authService.getRole() === 1 && isAdminRole">
+          <input matInput placeholder="Название урока" name="sampleItem"
+                 [(ngModel)]="lessonsService.lessonEntity['name']">
+        </mat-form-field>
+      </div>
+      <div class="controls">
+        <button mat-raised-button color="primary"
+                *ngIf="authService.getRole() === 1 && isAdminRole"
+                (click)="saveCurrentLesson()"
+                class="save_button">
+          Сохранить
+        </button>
+        <mat-slide-toggle *ngIf="authService.getRole() === 1"
+          [checked]="isAdminRole"
+          (change)="onAdminRoleToggle()">
+          Режим конструктора
+        </mat-slide-toggle>
+        <div class="answer-control-wrapper" [ngClass]="{'sticky': isCheckAnswersFixed}"
+             *ngIf="!isAdminRole && selectedIndex !== 1">
+          <button mat-stroked-button
+                  color="accent"
+                  title="Проверить ответы"
+                  *ngIf="lessonsService.userLesson[types[selectedIndex]].length > 0"
+                  class="check-answers-btn"
+                  (click)="lessonsService.sendUserAnswers(types[selectedIndex])">
+            Проверить ответы
+          </button>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group (selectedTabChange)="selectedIndex=$event.index"
+                     [selectedIndex]="selectedIndex" *ngIf="isLoaded">
+        <mat-tab label="МАТЕРИАЛЫ">
+          <in-lesson-page-materials></in-lesson-page-materials>
+        </mat-tab>
+        <mat-tab label="СЛОВА К УРОКУ">
+          <in-lesson-page-words></in-lesson-page-words>
+        </mat-tab>
+        <mat-tab label="ДОМАШНЕЕ ЗАДАНИЕ">
+          <in-lesson-page-hometasks></in-lesson-page-hometasks>
+        </mat-tab>
+        <mat-tab label="ТЕСТЫ">
+          <in-lesson-page-tests></in-lesson-page-tests>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!-- / My lessons -->

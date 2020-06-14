@@ -1,0 +1,44 @@
+<div class="exercise-image-edit exercise-container">
+  <div class="header-section">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        [Режим конструктора]
+        <mat-form-field class="header-input">
+          <input matInput placeholder="Название упражнения"
+                 name="exerciseHeader" [(ngModel)]="data['exerciseHeader']">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <mat-icon color="warn" title="Удалить упражнение" class="delete-ex-icon" (click)="removeExercise()">
+        delete
+      </mat-icon>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="img-uploaded">
+      <div class="item" *ngFor="let item of data['sentencesList']; let i=index;">
+        <div class="img-container" *ngIf="item['mediaData'] !== ''">
+          <mat-icon class="delete-item" (click)="deleteSentence(i)">cancel</mat-icon>
+          <img [src]="item?.mediaData" alt="{{item?.mediaData}}">
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="{'hideUploader': maxImgToLoad === 0}">
+      <image-upload
+        [max]="maxImgToLoad"
+        [class]="'image-upload-customization'"
+        [buttonCaption]="'Выбрать изображение'"
+        clearButtonCaption="Очистить"
+        [dropBoxMessage]="'Перетащите изображение в эту область'"
+        [extensions]="extensions"
+        (removed)="onRemoved($event)"
+        [beforeUpload]="onBeforeUpload"
+        (uploadFinished)="onUploadFinished($event)"
+        (uploadStateChanged)="onUploadStateChanged($event)">
+      </image-upload>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

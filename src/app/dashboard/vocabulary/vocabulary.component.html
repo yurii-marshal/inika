@@ -1,0 +1,49 @@
+<!-- Vocabulary -->
+<mat-card class="vocabulary">
+  <mat-card-header>
+    <h1>Vocabulary</h1>
+    <div class="vocabulary__actions">
+      <div class="vocabulary__action">
+        <form class="example-form">
+          <mat-form-field>
+            <input matInput placeholder="Type word">
+          </mat-form-field>
+          <button mat-button>Добавить слово</button>
+        </form>
+      </div>
+      <div class="vocabulary__action">
+        <mat-form-field>
+          <mat-select placeholder="Topic">
+            <mat-option value="">All</mat-option>
+            <mat-option value="">Not all</mat-option>
+            <mat-option value="">Nicht alle</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let dummy of ' '.repeat(10).split(''), let x = index">
+        <span>Word</span>
+        <span>Translation</span>
+        <span>Topic</span>
+        <span>Lesson #</span>
+        <button mat-icon-button [matMenuTriggerFor]="wordMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #wordMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Add</span>
+          </button>
+        </mat-menu>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<!-- /Vocabulary -->

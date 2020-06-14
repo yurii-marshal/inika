@@ -1,0 +1,26 @@
+<nav *ngIf="links.length > 0" class="in-navigation" [@navigationState]="state">
+    <ul class="in-navigation__list">
+        <li *ngFor="let link of links" class="in-navigation__item" [ngSwitch]="link.type">
+            <a style.color="{{ color }}"
+               routerLinkActive="in-navigation__link--active"
+               *ngSwitchCase="'internal'"
+               routerLink="{{ link.value }}"
+               class="in-navigation__link"
+               [routerLinkActiveOptions]="{exact: true}">{{ link.text }}</a>
+            <a style.color="{{ color }}" *ngSwitchCase="'external'"
+               href="{{ link.value }}" class="in-navigation__link">
+                {{link.text}}
+            </a>
+        </li>
+    </ul>
+    <button class="in-navigation__toggle in-hamburger"
+            [ngClass]="{'active': state === 'visible', 'dark': color !== '#ffffff'}"
+            (click)="toggleNavigation()">
+        <div class="in-hamburger__box">
+            <div class="in-hamburger__inner"></div>
+        </div>
+    </button>
+</nav>
+<div class="in-navigation__overlay" *ngIf="state === 'visible'"
+     [@overlayState]="state" (click)="toggleNavigation()">
+</div>

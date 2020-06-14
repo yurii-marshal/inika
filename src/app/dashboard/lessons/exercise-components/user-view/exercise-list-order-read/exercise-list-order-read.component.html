@@ -1,0 +1,35 @@
+<div class="exercise-answers-list-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="exercise-list" *ngFor="let sentence of exercise['data']['sentencesList']; let i=index">
+      <div class="row">
+        <div class="drags-container user">
+          <div draggable *ngFor="let item of sentence.dropTestSamples; let j = index;"
+               [dragData]="item" class="drag-item">
+            {{item.value}}
+          </div>
+        </div>
+      </div>
+      <!--[ngClass]="{'error': exercise['feedback'][i]?.isError, 'success': exercise['feedback'][i]?.isSuccess}"-->
+      <div class="list-drop-container">
+        <mat-icon *ngIf="exercise['feedback'][i]?.isError" class="error">close</mat-icon>
+        <mat-icon *ngIf="exercise['feedback'][i]?.isSuccess" class="success">check</mat-icon>
+        <div class="list-item" *ngFor="let item of sentence.dropAnswerSamples; let k = index;"
+             droppable (onDrop)="exercise['feedback']=[];onUserItemDrop($event, i, k)">
+          <div class="drop-item" *ngIf="item">
+            {{item?.value}}
+            <mat-icon (click)="exercise['feedback']=[];removeUserDropItem(i, k)">cancel</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

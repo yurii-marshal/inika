@@ -1,0 +1,73 @@
+<!-- My lessons -->
+<div class="lesson-page-words">
+  <!--<form>-->
+  <div class="example-container">
+    <mat-table #table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
+      <ng-container matColumnDef="word">
+        <mat-header-cell *matHeaderCellDef> СЛОВО</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <mat-form-field class="header-input" *ngIf="adminRole">
+            <input matInput placeholder="Слово" #inputs0 required
+                   (keypress)="onEnterWord($event, i)"
+                   name="exerciseHeader" [(ngModel)]="element.word">
+          </mat-form-field>
+          <span *ngIf="!adminRole">{{element.word}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="transcription">
+        <mat-header-cell *matHeaderCellDef> ТРАНСКРИПЦИЯ</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <mat-form-field class="header-input" *ngIf="adminRole">
+            <input matInput placeholder="Транскрипция" #inputs1
+                   (keypress)="onEnterTranscription($event, i)"
+                   name="exerciseHeader" [(ngModel)]="element.transcription">
+          </mat-form-field>
+          <span *ngIf="!adminRole">{{element.transcription}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="translate">
+        <mat-header-cell *matHeaderCellDef> ПЕРЕВОД</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <mat-form-field class="header-input" *ngIf="adminRole">
+            <input matInput placeholder="Перевод" #inputs2 required
+                   (keypress)="onEnterTranslate($event, i)"
+                   name="exerciseHeader" [(ngModel)]="element.translate">
+          </mat-form-field>
+          <span *ngIf="!adminRole">{{element.translate}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <mat-icon class="delete-icon" title="Удалить строку" *ngIf="adminRole"
+                    (click)="deleteRow(i)">
+            delete
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!--*ngIf="dataSource.data.length > pageSize"-->
+    <!--<mat-paginator #paginator *ngIf="false"-->
+    <!--[pageSize]="pageSize"-->
+    <!--[pageSizeOptions]="pageSizeOptions"-->
+    <!--[showFirstLastButtons]="true">-->
+    <!--</mat-paginator>-->
+
+    <div class="add-word-wrapper">
+      <button mat-stroked-button color="primary" title="Новая строка"
+              class="trigger-btn mat-fab mat-accent"
+              (click)="addRow()" *ngIf="adminRole">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!--</form>-->
+</div>
+<!-- / My lessons -->

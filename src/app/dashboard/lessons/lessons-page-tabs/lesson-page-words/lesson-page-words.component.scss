@@ -1,0 +1,35 @@
+.lesson-page-words {
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+
+  .mat-table {
+    overflow: auto;
+    margin-bottom: 10px;
+    //max-height: 500px;
+  }
+
+  .add-word-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 15px;
+    .trigger-btn {
+      color: #00bef2;
+      width: 90px;
+      max-height: 45px;
+      border-radius: 30px;
+      background-color: #FAFAFA;
+    }
+  }
+
+  .delete-icon {
+    cursor: pointer;
+    color: #DADADA;
+    &:hover {
+      color: #000000;
+    }
+  }
+}

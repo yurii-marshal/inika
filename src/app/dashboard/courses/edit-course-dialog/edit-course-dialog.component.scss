@@ -1,0 +1,25 @@
+.marginBottom {
+  display: inline-block;
+  padding-bottom: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.align-center {
+  text-align: center;
+}
+
+.create-btn:enabled {
+  &:hover {
+    background-color: darken(#00BEF2, 10%);
+  }
+}
+.cancel-btn {
+  &:hover {
+    background-color: darken(#E0E0E0, 0);
+  }
+}
+
+.header {
+  margin: 0;
+}
+

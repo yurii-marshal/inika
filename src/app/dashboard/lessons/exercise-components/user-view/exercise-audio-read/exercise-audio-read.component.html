@@ -1,0 +1,17 @@
+<div class="exercise-audio-read exercise-container">
+  <div class="header-section no-draggable">
+    <div class="left">
+      <!--<div class="index-label">{{index}}</div>-->
+      <div class="exercise-header-text">
+        {{exercise['data']['exerciseHeader']}}
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="row existed-audio user"
+         *ngIf="exercise['data']['sentencesList'].length > 0 && exercise['data']['sentencesList'][0]['mediaData'] !== ''">
+      <audio [src]="exercise['data']['sentencesList'][0]['mediaData']" controls></audio>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>

@@ -1,0 +1,58 @@
+.exercise-image-edit {
+  .img-container {
+    margin: 10px auto;
+    height: 500px;
+    width: 70%;
+  }
+  // custom image upload styles
+  /deep/ .image-upload-customization {
+    .img-ul {
+      border: none;
+    }
+    .img-ul-file-upload {
+      padding: 0;
+    }
+    .img-ul-drag-box-msg {
+      display: none;
+    }
+    .img-ul-upload {
+      background-color: #33cc99 !important;
+      margin: 16px !important;
+    }
+    .img-ul-clear {
+      display: none;
+    }
+    .img-ul-x-mark {
+      line-height: 1.5;
+    }
+  }
+  .content-section {
+    .img-uploaded {
+      display: flex;
+      flex-wrap: wrap;
+      //margin-bottom: 30px;
+      .item {
+        width: inherit;
+        margin-bottom: 10px;
+        .img-container {
+          max-width: 200px;
+          max-height: 100px;
+          position: relative;
+          // padding: 0 20px 20px 0;
+          .delete-item {
+            cursor: pointer;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+          }
+          img {
+            max-height: 100%;
+          }
+        }
+      }
+    }
+    .hideUploader {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<article class="in-course" *ngIf="data">
+  <div *ngIf="data.inclass" class="in-course__badge in-badge in-badge--primary">INclass</div>
+  <div class="in-course__image" [style.background-image]="'url(' + data.image + ')'"></div>
+  <div class="in-course__text">
+    <h3 class="in-course__title in-title in-title--highlighted"><span>{{ data.name }}</span></h3>
+    <p class="in-course__description">{{ data.description }}</p>
+    <div class="in-course__details">
+      <!--<div class="in-course-info">-->
+        <!--<i class="in-course-info__icon ion-android-contacts"></i>-->
+        <!--<span class="in-course-info__text">{{ data.currentStudents }} студента</span>-->
+      <!--</div>-->
+      <div class="in-course-info">
+        <i class="in-course-info__icon material-icons">clear_all</i>
+        <span class="in-course-info__text">{{ data.level.from }}</span>
+      </div>
+    </div>
+  </div>
+  <button routerLink="/prices" class="in-button in-button--highlighted in-course__get">
+    Узнать стоимость
+  </button>
+</article>

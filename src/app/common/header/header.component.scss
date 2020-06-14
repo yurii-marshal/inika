@@ -1,0 +1,110 @@
+.in-header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  // background-color: rgba(79, 172, 254, .5);
+  // background-image: linear-gradient(-34deg, #4FACFE 0%, #00F2FE 100%);
+
+  &__wrapper {
+    border-bottom: 1px solid #fff;
+    padding: 16px 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__left {
+    display: flex;
+    align-items: center;
+    flex-basis: 100%;
+    flex-flow: row wrap;
+    justify-content: center;
+    text-align: center;
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+      flex-basis: auto;
+      text-align: left;
+    }
+  }
+  &__right {
+    margin-right: 33px;
+  }
+  &__menu {
+    display: flex;
+  }
+  &__socials {
+    flex-basis: 100%;
+    padding-top: 10px;
+    @media (min-width: 768px) {
+      padding-top: 6px;
+      margin-left: 60px;
+      flex-basis: auto;
+    }
+    ul {
+      color: red;
+    }
+  }
+  &_login, .mat-icon {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    font-family: Rubick, sans-serif;
+    color: #ffffff;
+    line-height: 25px;
+    //&:hover {
+    //  text-decoration: underline;
+    //}
+  }
+  .mat-icon {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 25px;
+    cursor: pointer;
+  }
+}
+
+.navigation {
+  background-image: linear-gradient(-34deg, #4FACFE 0%, #00F2FE 100%);
+
+}
+
+.no_border_bottom {
+  border-bottom: none;
+}
+
+// landscape
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+
+}
+
+// iPad Portrait
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+// mobile screens
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  .in-header {
+    .in-container {
+      .in-header__wrapper {
+        .in-header__left {
+          .in-header__socials {
+            flex-basis: auto;
+            margin-left: 50px;
+          }
+        }
+        .in-header__menu {
+          .in-header__right {
+            .in-header__navigation {
+
+            }
+          }
+          .in-header_login {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

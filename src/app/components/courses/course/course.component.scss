@@ -1,0 +1,108 @@
+$color: #53d8fb;
+.in-course {
+  height: 100%;
+  border-radius: 6px;
+  border: solid 1px #b6c0ca;
+  position: relative;
+  transition: .15s ease-in-out;
+  transition-property: border-color;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row wrap;
+  height: 470px;
+  &:hover {
+    border-color: $color;
+    .in-course__badge {
+      transform: translateY(-100px);
+    }
+    .in-course__image {
+      transform: translateY(-300px);
+    }
+    .in-course__text {
+      align-content: flex-start;
+      transform: translateY(-300px);
+    }
+    .in-course__description {
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+      position: relative;
+    }
+    .in-course__get {
+      transform: translateY(0);
+    }
+  }
+  &__badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    transition: all .25s ease-in-out;
+  }
+  &__image {
+    width: 100%;
+    height: 300px;
+    background: center center no-repeat;
+    background-size: cover;
+    transform: translateY(0);
+    transition: all .25s ease-in-out;
+  }
+  &__text {
+    transition: all .25s ease-in-out;
+    width: 100%;
+    height: calc(100% - 300px);
+    padding: 25px 25px 15px;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-between;
+    & > * {
+      width: 100%;
+    }
+  }
+  &__title {
+    font-size: 24px;
+    margin: 0 0 25px;
+  }
+  &__description {
+    position: absolute;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #65717d;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: all .25s ease-in-out;
+  }
+  &__details {
+    display: flex;
+    align-self: flex-end;
+  }
+  &__get {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 17px;
+    transform: translateY(100%);
+    transition: all .25s ease-in-out;
+  }
+}
+
+.in-course-info {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 2.0;
+  color: #65717d;
+  display: flex;
+  & + & {
+    margin-left: 20px;
+  }
+  &__text {
+    display: inline-block;
+    margin-left: 6px;
+  }
+}

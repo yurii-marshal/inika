@@ -1,0 +1,20 @@
+.marginBottom {
+  padding-bottom: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline-block;
+}
+.align-center {
+  text-align: center;
+}
+
+.main-fab-mini-btn {
+  &:hover {
+    background-color: darken(#ed5e68, 10%);
+  }
+}
+.cancel-btn {
+  &:hover {
+    background-color: darken(#E0E0E0, 0);
+  }
+}

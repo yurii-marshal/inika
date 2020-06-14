@@ -1,0 +1,123 @@
+.user-profile {
+  width: 90%;
+  margin: 0 auto;
+
+  .user_details {
+    display: flex;
+    margin: 25px;
+
+    .user_photo {
+      height: 250px;
+      width: 250px;
+      color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 10px;
+      background-color: #00BEF2;
+      .imagePreview {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    .profile_info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 40px;
+      .showStudentsAndCourses {
+        .students, .courses {
+          margin-left: 25px;
+          margin-bottom: 0;
+          p {
+            margin-bottom: 5px;
+            margin-top: 15px;
+          }
+        }
+      }
+      .user_name {
+        margin: 25px;
+        font-size: 30px;
+        letter-spacing: -0.4px;
+        color: #8A888A;
+        font-weight: 400;
+        height: 15px;
+      }
+
+      .students {
+        width: 300px;
+      }
+      .courses {
+        width: 300px;
+      }
+    }
+    .profile_controls {
+      position: absolute;
+      top: 35px;
+      right: 50px;
+      .mat-icon, .edit_icons {
+        position: static;
+        color: #DADADA;
+        &:hover {
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+    }
+  }
+
+  .mat-icon {
+    color: #00BEF2;
+    position: absolute;
+    left: -7%;
+    top: 6px;
+  }
+
+  .mat-form-field {
+    width: 86%;
+    margin-left: 10%;
+    margin-top: 5px;
+  }
+
+  .btn-container {
+    margin-right: 4%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    .cancel-btn {
+      margin-right: 20px;
+      &:hover:enabled {
+        background-color: darken(#FFFFFF, 10%);
+      }
+    }
+    .save-btn {
+      &:hover:enabled {
+        background-color: darken(#00BEF2, 5%);
+      }
+    }
+  }
+  input[type="file"] {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+  .mat-card-content {
+    margin-bottom: 25px;
+  }
+  .emailInput {
+    position: relative;
+    .emailExist {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      color: red;
+      font-size: 12px;
+    }
+  }
+  .mat-calendar {
+    width: 50%;
+  }
+}
+
+

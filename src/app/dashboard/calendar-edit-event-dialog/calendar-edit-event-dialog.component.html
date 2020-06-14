@@ -1,0 +1,89 @@
+<div class="calendar-event-dialog">
+  <h1 mat-dialog-title *ngIf="authService.getRole() <= 2">
+    Редактировать событие
+  </h1>
+  <mat-dialog-content #editDialog>
+    <div class="align-center">
+      <mat-form-field *ngIf="data.teachers_list">
+        <mat-select placeholder="Преподаватель"
+                    [(value)]="dateRange.teacher_id"
+                    [disabled]="authService.getRole() > 2">
+          <mat-option *ngFor="let teacher of data.teachers_list" [value]="teacher.id">
+            {{teacher.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="data.students_list">
+        <mat-select placeholder="Студент" [(value)]="dateRange.student_id"
+                    [disabled]="authService.getRole() > 2">
+          <mat-option *ngFor="let student of data.students_list" [value]="student.id">
+            {{student.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="align-center status">
+      <mat-form-field>
+        <input required matInput [disabled]="authService.getRole() > 2"
+               #selectedMoments placeholder="{{authService.getRole() <= 2 ? 'Выбор даты' : 'Дата'}}"
+               [(ngModel)]="owlDate"
+               [selectMode]="'single'"
+               (change)="checkOnEmptyFields()"
+               [owlDateTimeTrigger]="dtPicker1"
+               [owlDateTime]="dtPicker1">
+        <owl-date-time #dtPicker1 (afterPickerClosed)="checkOnEmptyFields()" [disabled]="authService.getRole() > 2"
+                       [pickerType]="'calendar'"></owl-date-time>
+        <mat-error *ngIf="!owlDate">
+          Это поле обязательно
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="dateRange.teacher_id">
+        <mat-select placeholder="Статус" [(value)]="currentStatusId" [disabled]="authService.getRole() > 2">
+          <mat-option *ngFor="let status of ecService.statusList" [value]="status.id">
+            {{status.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="align-center">
+      <mat-form-field>
+        <input matInput required [disabled]="authService.getRole() > 2"
+               #selectedMoments2
+               placeholder="{{authService.getRole() <= 2 ? 'Выбор времени' : 'Время'}}"
+               [(ngModel)]="owlTimeRange"
+               [selectMode]="'range'"
+               [owlDateTimeTrigger]="dtPicker2"
+               [owlDateTime]="dtPicker2">
+        <owl-date-time #dtPicker2 (afterPickerClosed)="checkOnEmptyFields()" [disabled]="authService.getRole() > 2"
+                       [pickerType]="'timer'"></owl-date-time>
+        <mat-error *ngIf="!owlTimeRange">
+          Это поле обязательно
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <div class="align-center" *ngIf="authService.getRole() <= 2">
+    <mat-dialog-actions class="marginBottom ">
+      <button mat-button
+              [mat-dialog-close]="false"
+              class="mat-raised-button cancel-btn"
+              (click)="onCancel();">
+        Отмена
+      </button>
+      <button mat-button
+              [mat-dialog-close]="{remove: true, event: data.event}"
+              class="mat-raised-button mat-warn cancel-btn">
+        Удалить
+      </button>
+      <button mat-button
+              [mat-dialog-close]="dateRange"
+              class="mat-raised-button create-btn mat-primary"
+              (click)="onSave()"
+              [disabled]="isFormUnfilled">
+        Сохранить
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

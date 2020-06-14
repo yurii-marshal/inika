@@ -1,0 +1,69 @@
+<div class="add-exercise-menu" #addSentenceSection>
+  <button mat-fab class="trigger-btn" (click)="toggleMenuSection();">
+    <mat-icon>add</mat-icon>
+  </button>
+  <div class="add-btns" *ngIf="isExerciseSectionOpened" [ngClass]="{'top-position': isItemForCover}">
+    <mat-grid-list cols="3" rowHeight="5:1">
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(-2)">
+          Радио кнопка
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(-1)">
+          Чекбоксы
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(0)">
+          Выпадающий список
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(1)">
+          Порядок слов
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(2)">
+          Слово - предложение
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(3)">
+          Слово - картинка
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(4)">
+          Написать ответ
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(5)">
+          Текст
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(6)">
+          Ссылка
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(7)">
+          Изображение
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(8)">
+          Видео файл
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="addExercise(9)">
+          Аудио файл
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

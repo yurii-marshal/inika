@@ -1,0 +1,28 @@
+<div class="exercise-radiogroup-read exercise-container">
+  <div class="question-header user-mode">
+    <!--<div class="index">{{index+1}}.</div>-->
+    {{exercise['data'].header}}
+  </div>
+  <div class="radio-container user">
+    <mat-radio-group class="radio-group" [(ngModel)]="exercise['data'].answer">
+      <mat-radio-button class="radio-button" (change)="exercise['feedback']={};"
+                        *ngFor="let select of exercise['data'].selected; let p = index;"
+                        [value]="exercise['data'].inputs[p].id">
+        {{exercise['data'].inputs[p].text}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="answer-message-container">
+    <mat-icon *ngIf="exercise['feedback']?.isError" class="error">close</mat-icon>
+    <mat-icon *ngIf="exercise['feedback']?.isSuccess" class="success">check</mat-icon>
+    <!--<div class="error" *ngIf="exercise['feedback'].isError">-->
+      <!--Неверно-->
+      <!--<span *ngIf="exercise['feedback'].description">-->
+                <!--. Правильный ответ: <span class="description">{{exercise['feedback'].description}}</span>-->
+            <!--</span>-->
+    <!--</div>-->
+    <!--<div class="success" *ngIf="exercise['feedback'].isSuccess">-->
+      <!--Правильно-->
+    <!--</div>-->
+  </div>
+</div>
