@@ -68,7 +68,7 @@
     "simple-line-icons": "^2.4.1",
     "slick-carousel": "^1.8.1",
     "toastr": "^2.1.4",
-    "underscore": "^1.10.2",
+    "underscore": "^1.12.1",
     "web-animations-js": "^2.3.2",
     "youtube": "^0.1.0",
     "zone.js": "^0.8.29"
